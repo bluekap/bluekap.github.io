@@ -493,31 +493,31 @@
             <div class="eight columns">
 
                <!-- form -->
-               <form action="" method="post" id="contactForm" name="contactForm">
+               <form method="post" id="contactForm" name="contactForm" action="https://docs.google.com/forms/d/e/1FAIpQLScl_dOOITGQrANp0VuumcCE3O6ySfE_XIixkox6G9aaZF3Hyw/formResponse?" target="hidden_iframe" onsubmit="submitted=true;">
 					<fieldset>
 
                   <div>
-						   <label for="contactName">Name <span class="required">*</span></label>
-						   <input type="text" value="" size="35" id="contactName" name="contactName">
+						   <label for="entry.1025626236">Name <span class="required">*</span></label>
+						   <input type="text" value="" size="35" id="entry.1025626236" name="entry.1025626236">
                   </div>
 
                   <div>
-						   <label for="contactEmail">Email <span class="required">*</span></label>
-						   <input type="text" value="" size="35" id="contactEmail" name="contactEmail">
+						   <label for="entry.187643710">Email <span class="required">*</span></label>
+						   <input type="text" value="" size="35" id="entry.187643710" name="entry.187643710">
                   </div>
 
                   <div>
-						   <label for="contactSubject">Subject</label>
-						   <input type="text" value="" size="35" id="contactSubject" name="contactSubject">
+						   <label for="entry.1104626675">Subject</label>
+						   <input type="text" value="" size="35" id="entry.1104626675" name="entry.1104626675">
                   </div>
 
                   <div>
-                     <label for="contactMessage">Message <span class="required">*</span></label>
-                     <textarea cols="50" rows="15" id="contactMessage" name="contactMessage"></textarea>
+                     <label for="entry.213134376">Message <span class="required">*</span></label>
+                     <textarea cols="50" rows="15" id="entry.213134376" name="entry.213134376"></textarea>
                   </div>
 
                   <div>
-                     <button class="submit">Submit</button>
+                     <input type="submit" value="Submit">
                      <span id="image-loader">
                         <img alt="" src="images/loader.gif">
                      </span>
@@ -525,7 +525,15 @@
 
 					</fieldset>
 				   </form> <!-- Form End -->
-
+               <iframe name="hidden_iframe" id="hidden_iframe" style="display:none;" onload="if(submitted) {}"></iframe>
+               <script src="js/jquery.min.js"></script>
+                  <script type="text/javascript">var submitted=false;</script>
+                  <script type="text/javascript">
+                  $('#contactForm').on('submit', function(e) {
+                    $('#contactForm *').fadeOut(2000);
+                    $('#contactForm').prepend('Your submission has been processed...');
+                    });
+               </script>
                <!-- contact-warning -->
                <div id="message-warning"> Error boy</div>
                <!-- contact-success -->
