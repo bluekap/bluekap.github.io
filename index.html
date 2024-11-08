@@ -1,629 +1,445 @@
 <!DOCTYPE html>
-<!--[if lt IE 8 ]><html class="no-js ie ie7" lang="en"> <![endif]-->
-<!--[if IE 8 ]><html class="no-js ie ie8" lang="en"> <![endif]-->
-<!--[if (gte IE 8)|!(IE)]><!--><html class="no-js" lang="en"> <!--<![endif]-->
+<html lang="en">
+<!DOCTYPE html>
+<html lang="en">
 <head>
+    <meta charset="utf-8">
+    <title>Vaibhav Goswami | AI & Cloud Engineer</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        .bg-glass {
+            background: rgba(255, 255, 255, 0.08);
+            backdrop-filter: blur(8px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: all 0.3s ease;
+        }
+        .bg-glass:hover {
+            background: rgba(255, 255, 255, 0.12);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+        .gradient-bg {
+            background: linear-gradient(135deg, 
+                rgba(15, 23, 42, 0.9),
+                rgba(30, 41, 59, 0.9),
+                rgba(51, 65, 85, 0.9));
+            background-size: 200% 200%;
+            animation: gradientMove 15s ease infinite;
+            position: relative;
+        }
+        .gradient-bg::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: 
+                radial-gradient(circle at 20% 30%, rgba(56, 189, 248, 0.15) 0%, transparent 50%),
+                radial-gradient(circle at 80% 70%, rgba(99, 102, 241, 0.15) 0%, transparent 50%);
+            pointer-events: none;
+        }
+        .gradient-text {
+            background: linear-gradient(90deg, #38bdf8, #818cf8);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        @keyframes gradientMove {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(10px); }
+        }
+        .scroll-indicator {
+            animation: bounce 2s infinite;
+            cursor: pointer;
+            opacity: 0.7;
+            transition: opacity 0.3s ease;
+        }
+        .scroll-indicator:hover {
+            opacity: 1;
+        }
+        .typing-container::after {
+            content: '|';
+            animation: blink 1s infinite;
+            margin-left: 2px;
+            color: #38bdf8;
+        }
+        @keyframes blink {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0; }
+        }
+        .profile-img {
+            box-shadow: 
+                0 0 30px rgba(56, 189, 248, 0.3),
+                0 0 60px rgba(99, 102, 241, 0.2);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .profile-img:hover {
+            transform: scale(1.02);
+            box-shadow: 
+                0 0 40px rgba(56, 189, 248, 0.4),
+                0 0 80px rgba(99, 102, 241, 0.3);
+        }
+        .social-icon {
+            transition: all 0.3s ease;
+        }
+        .social-icon:hover {
+            transform: translateY(-3px);
+        }
+        .section-divider {
+            height: 4rem; /* Adds space after the hero section */
+        }
 
-   <!--- Basic Page Needs
-   ================================================== -->
-   <meta charset="utf-8">
-	<title>Vaibhav Goswami</title>
-	<meta name="description" content="">
-	<meta name="author" content="">
-
-   <!-- Mobile Specific Metas
-   ================================================== -->
-	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-
-	<!-- CSS
-    ================================================== -->
-    <link rel="stylesheet" href="css/default.css">
-    <link rel="stylesheet" href="css/layout.css">
-    <link rel="stylesheet" href="css/media-queries.css">
-    <link rel="stylesheet" href="css/magnific-popup.css">
-
-   <!-- Script
-   ================================================== -->
-	<script src="js/modernizr.js"></script>
-
-   <!-- Favicons
-	================================================== -->
-	<link rel="shortcut icon" href="favicon.png" >
-
+        /* Ensures the hero section has enough space */
+        .hero-min-height {
+            min-height: calc(100vh + 4rem);
+        }
+        .highlight-text {
+            color: #38bdf8;
+        }
+        html {
+            scroll-behavior: smooth;
+        }
+        .hero-content {
+            animation: fadeIn 1s ease-out;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .grain-overlay {
+            position: absolute;
+            inset: 0;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%' height='100%' filter='url(%23noise)' opacity='0.1'/%3E%3C/svg%3E");
+            pointer-events: none;
+            opacity: 0.15;
+            z-index: 1;
+        }
+    </style>
 </head>
+<body class="bg-gray-900 text-white">
+    <!-- Hero Section -->
+    <section class="hero-min-height gradient-bg flex items-center justify-center relative pt-20">
+        <div class="grain-overlay"></div>
+        <div class="container mx-auto px-6 z-10 pb-16">  <!-- Added padding bottom -->
+            <div class="flex flex-col items-center text-center hero-content">
+                <img src="images/profilepic.jpg" alt="Vaibhav Goswami" 
+                     class="rounded-full border-2 border-sky-400/30 profile-img mb-8 w-32 h-32 md:w-40 md:h-40 object-cover">
+                
+                <h1 class="text-4xl md:text-6xl font-bold mb-4 tracking-tight text-white/90">
+                    Vaibhav Goswami
+                </h1>
+                
+                <div class="h-8 mb-8">
+                    <span class="text-xl md:text-2xl font-medium typing-container highlight-text" id="typing-text"></span>
+                </div>
+                
+                <p class="text-lg md:text-xl max-w-2xl mb-12 leading-relaxed text-gray-100">
+                    Specializing in AI solutions and cloud architectures. 
+                    Passionate about transforming complex challenges into elegant, 
+                    scalable solutions that drive innovation.
+                </p>
+                
+                <div class="flex space-x-8">
+                    <a href="https://github.com/bluekap" 
+                       class="social-icon bg-glass p-4 rounded-full hover:bg-white hover:text-black transition-all">
+                        <i class="fab fa-github text-2xl"></i>
+                    </a>
+                    <a href="https://www.linkedin.com/in/vaibhav-goswami3/" 
+                       class="social-icon bg-glass p-4 rounded-full hover:bg-white hover:text-blue-600 transition-all">
+                        <i class="fab fa-linkedin text-2xl"></i>
+                    </a>
+                    <a href="mailto:vabg96@gmail.com" 
+                       class="social-icon bg-glass p-4 rounded-full hover:bg-white hover:text-red-500 transition-all">
+                        <i class="fas fa-envelope text-2xl"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
 
-<body>
+    <script>
 
-   <!-- Header
-   ================================================== -->
-   <header id="home">
+        // Advanced typing animation
+        const phrases = [
+            'AI Engineer',
+            'Cloud Architecture Specialist',
+            'Data Engineer',
+            'Python Developer',
+            'DevOps Enthusiast'
+        ];
 
-      <nav id="nav-wrap">
+        let phraseIndex = 0;
+        let charIndex = 0;
+        let isDeleting = false;
+        let isWaiting = false;
 
-         <a class="mobile-btn" href="#nav-wrap" title="Show navigation">Show navigation</a>
-	      <a class="mobile-btn" href="#" title="Hide navigation">Hide navigation</a>
+        function type() {
+            const currentPhrase = phrases[phraseIndex];
+            const typingElement = document.getElementById('typing-text');
 
-         <ul id="nav" class="nav">
-            <li class="current"><a class="smoothscroll" href="#home">Home</a></li>
-                <li><a class="smoothscroll" href="#about">About</a></li>
-                <li><a class="smoothscroll" href="#resume">Work</a></li>
-                <li><a class="smoothscroll" href="#portfolio">Certifications</a></li>
-                <li><a class="smoothscroll" href="#testimonials">Quotes</a></li>
-                <li><a class="smoothscroll" href="#contact">Contact</a></li>
-         </ul> <!-- end #nav -->
+            if (isDeleting) {
+                // Deleting text
+                charIndex--;
+                typingElement.textContent = currentPhrase.substring(0, charIndex);
+                
+                if (charIndex === 0) {
+                    isDeleting = false;
+                    phraseIndex = (phraseIndex + 1) % phrases.length;
+                    setTimeout(type, 500); // Pause before typing next phrase
+                    return;
+                }
+            } else {
+                // Typing text
+                charIndex++;
+                typingElement.textContent = currentPhrase.substring(0, charIndex);
+                
+                if (charIndex === currentPhrase.length) {
+                    isDeleting = true;
+                    setTimeout(type, 2000); // Wait before starting to delete
+                    return;
+                }
+            }
 
-      </nav> <!-- end #nav-wrap -->
+            // Randomize typing speed for more natural effect
+            const delta = isDeleting ? 50 : Math.random() * 100 + 50;
+            setTimeout(type, delta);
+        }
 
-      <div class="row banner">
-         <div class="banner-text">
-            <h1 class="responsive-headline">I'm Vaibhav Goswami.</h1>
-            
-            <h3>I'm an AI Engineer, currently working in a globally leading Information & Media Organization. I graduated from <span>Birla Institute of Technology and Sciences, Pilani</span>, having my UG in <span>Electronics and Instrumentation</span>. <br>Start scrolling and learn more <a class="smoothscroll" href="#about">about me</a>.</h3>
-            <hr />
-            <ul class="social">
-				<li><a href="https://www.linkedin.com/in/vaibhav-goswami3/"><i class="fa fa-linkedin"></i></a></li>
-				<li><a href="https://github.com/bluekap"><i class="fa fa-github"></i></a></li>
-				<li><a href="https://www.instagram.com/vabgos/"><i class="fa fa-instagram"></i></a></li>
-            </ul>
-         </div>
-      </div>
+        // Start the typing animation
+        setTimeout(type, 1000);
+    </script>
 
-      <p class="scrolldown">
-         <a class="smoothscroll" href="#about"><i class="icon-down-circle"></i></a>
-      </p>
+   <!-- About Section -->
+   <section id="about" class="py-20 bg-gray-800">
+       <div class="container mx-auto px-6 text-center">
+           <h2 class="text-4xl font-bold mb-8">About Me</h2>
+           <div class="max-w-3xl mx-auto text-gray-300">
+               <p class="text-lg leading-relaxed mb-6">
+                   I'm <span class="font-semibold text-white">Vaibhav Goswami</span>, an AI and Cloud Engineer currently leading the development of the <span class="font-semibold text-white">Generative AI platform</span> at Thomson Reuters. With a background in <span class="font-semibold text-white">Electronics and Instrumentation</span> from BITS Pilani, I specialize in building scalable AI solutions and optimizing cloud architectures.
+               </p>
+               <p class="text-lg leading-relaxed">
+                   I am passionate about using <span class="font-semibold text-white">Python, DevOps, Kubernetes</span>, and cloud technologies to drive innovation and solve complex challenges. Outside work, I enjoy keeping up with the latest AI advancements and sharing insights with the tech community.
+               </p>
+           </div>
+       </div>
+   </section>
 
-   </header> <!-- Header End -->
+
+    <!-- Skills Section -->
+        <!-- Skills Section -->
+    <section id="skills" class="py-20">
+        <div class="container mx-auto px-6">
+            <h2 class="text-4xl font-bold text-center mb-16">Technical Expertise</h2>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <!-- AI & ML -->
+                <div class="bg-glass rounded-xl p-8 card-hover">
+                    <div class="flex items-center mb-6">
+                        <div class="w-12 h-12 bg-blue-500 rounded-full flex items-center justify-center mr-4">
+                            <i class="fas fa-brain text-2xl"></i>
+                        </div>
+                        <h3 class="text-2xl font-bold">AI & ML</h3>
+                    </div>
+                    <div class="space-y-4">
+                        <div class="flex justify-between mb-2">
+                            <span>Generative AI</span>
+                            <span class="text-blue-400">Expert</span>
+                        </div>
+                        <div class="flex justify-between mb-2">
+                            <span>MLOps</span>
+                            <span class="text-blue-400">Expert</span>
+                        </div>
+                        <div class="flex justify-between mb-2">
+                            <span>TensorFlow</span>
+                            <span class="text-blue-400">Expert</span>
+                        </div>
+                        <div class="flex justify-between mb-2">
+                            <span>Computer Vision</span>
+                            <span class="text-blue-400">Proficient</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Cloud & DevOps -->
+                <div class="bg-glass rounded-xl p-8 card-hover">
+                    <div class="flex items-center mb-6">
+                        <div class="w-12 h-12 bg-indigo-500 rounded-full flex items-center justify-center mr-4">
+                            <i class="fas fa-cloud text-2xl"></i>
+                        </div>
+                        <h3 class="text-2xl font-bold">Cloud & DevOps</h3>
+                    </div>
+                    <div class="space-y-4">
+                        <div class="flex justify-between mb-2">
+                            <span>GCP</span>
+                            <span class="text-indigo-400">Expert</span>
+                        </div>
+                        <div class="flex justify-between mb-2">
+                            <span>AWS</span>
+                            <span class="text-indigo-400">Expert</span>
+                        </div>
+                        <div class="flex justify-between mb-2">
+                            <span>Terraform</span>
+                            <span class="text-indigo-400">Proficient</span>
+                        </div>
+                        <div class="flex justify-between mb-2">
+                            <span>Kubernetes</span>
+                            <span class="text-indigo-400">Proficient</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Software Development -->
+                <div class="bg-glass rounded-xl p-8 card-hover">
+                    <div class="flex items-center mb-6">
+                        <div class="w-12 h-12 bg-purple-500 rounded-full flex items-center justify-center mr-4">
+                            <i class="fas fa-code text-2xl"></i>
+                        </div>
+                        <h3 class="text-2xl font-bold">Development</h3>
+                    </div>
+                    <div class="space-y-4">
+                        <div class="flex justify-between mb-2">
+                            <span>Python</span>
+                            <span class="text-purple-400">Expert</span>
+                        </div>
+                        <div class="flex justify-between mb-2">
+                            <span>SQL</span>
+                            <span class="text-purple-400">Intermediate</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
 
 
-   <!-- About Section
-   ================================================== -->
-   <section id="about">
+    <!-- Experience Timeline -->
+    <section id="experience" class="py-20 bg-gray-800">
+    <div class="container mx-auto px-6">
+        <h2 class="text-4xl font-bold text-center mb-16">Professional Journey</h2>
+        <div class="max-w-4xl mx-auto">
+            <!-- Thomson Reuters -->
+            <div class="relative pl-8 pb-12">
+                <div class="absolute left-0 top-0 w-1 h-full bg-blue-500"></div>
+                <div class="absolute w-4 h-4 bg-blue-500 rounded-full -left-[7px]"></div>
+                <div class="bg-glass rounded-xl p-8 ml-8 card-hover">
+                    <div class="flex justify-between items-start mb-4">
+                        <div>
+                            <h3 class="text-2xl font-bold">Senior AI Software Engineer</h3>
+                            <p class="text-blue-400">Thomson Reuters</p>
+                        </div>
+                        <span class="text-gray-400">June 2022 - Present</span>
+                    </div>
+                    <ul class="list-disc list-inside space-y-2 text-gray-300">
+                        <li>Leading the development of the Generative AI Platform for the organization.</li>
+                    </ul>
+                </div>
+            </div>
 
-      <div class="row">
+            <!-- HSBC SSE -->
+            <div class="relative pl-8 pb-12">
+                <div class="absolute left-0 top-0 w-1 h-full bg-blue-500"></div>
+                <div class="absolute w-4 h-4 bg-blue-500 rounded-full -left-[7px]"></div>
+                <div class="bg-glass rounded-xl p-8 ml-8 card-hover">
+                    <div class="flex justify-between items-start mb-4">
+                        <div>
+                            <h3 class="text-2xl font-bold">Senior Software Engineer</h3>
+                            <p class="text-blue-400">HSBC Technology</p>
+                        </div>
+                        <span class="text-gray-400">September 2021 - May 2022</span>
+                    </div>
+                    <ul class="list-disc list-inside space-y-2 text-gray-300">
+                        <li>Led cloud migration initiatives, managing the transition of data from on-premises to Google Cloud Platform.</li>
+                        <li>Implemented automated Terraform pipelines, streamlining production deployments and reducing errors by 95%.</li>
+                        <li>Developed Infrastructure as Code (IaC) for Compute Engines, Managed Instance Groups, Load Balancers, Cloud Storage Buckets, and BigQuery resources.</li>
+                    </ul>
+                </div>
+            </div>
 
-         <div class="three columns">
+            <!-- HSBC SE -->
+            <div class="relative pl-8 pb-12">
+                <div class="absolute left-0 top-0 w-1 h-full bg-blue-500"></div>
+                <div class="absolute w-4 h-4 bg-blue-500 rounded-full -left-[7px]"></div>
+                <div class="bg-glass rounded-xl p-8 ml-8 card-hover">
+                    <div class="flex justify-between items-start mb-4">
+                        <div>
+                            <h3 class="text-2xl font-bold">Software Engineer</h3>
+                            <p class="text-blue-400">HSBC Technology</p>
+                        </div>
+                        <span class="text-gray-400">July 2019 - August 2021</span>
+                    </div>
+                    <ul class="list-disc list-inside space-y-2 text-gray-300">
+                        <li>Developed an Automated Machine Learning (AutoML) Pipeline, automating 90% of the manual work in training and deploying models.</li>
+                        <li>Designed and deployed a Python-based Automatic Test Data Generator for testing Dev and UAT pipelines, utilizing the Dash-Flask framework.</li>
+                        <li>Created a Python Web API hosted on Google Cloud, enabling search functionality for over 50+ data assets within the organization.</li>
+                    </ul>
+                </div>
+            </div>
 
-            <img class="profile-pic"  src="images/profilepic.jpg" alt="" />
+            <!-- UST ML Intern -->
+            <div class="relative pl-8 pb-12">
+                <div class="absolute left-0 top-0 w-1 h-full bg-blue-500"></div>
+                <div class="absolute w-4 h-4 bg-blue-500 rounded-full -left-[7px]"></div>
+                <div class="bg-glass rounded-xl p-8 ml-8 card-hover">
+                    <div class="flex justify-between items-start mb-4">
+                        <div>
+                            <h3 class="text-2xl font-bold">Machine Learning Intern</h3>
+                            <p class="text-blue-400">UST Global</p>
+                        </div>
+                        <span class="text-gray-400">July 2018 - December 2018</span>
+                    </div>
+                    <ul class="list-disc list-inside space-y-2 text-gray-300">
+                        <li>Developed a Car Damage Detection Algorithm that estimates damage on individual car parts from images.</li>
+                        <li>Created a Mask-RCNN model for object detection, segmenting car parts with 91% accuracy.</li>
+                        <li>Built a multi-class image classification model to identify the severity of car damage (Minor, Moderate, Severe), achieving 83% accuracy in identifying damaged parts.</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    </section>
 
-         </div>
 
-         <div class="nine columns main-col">
-
-            <h2>About Me</h2>
-
-            <p>
+    <!-- Contact Section -->
+    <section id="contact" class="py-20">
+        <div class="container mx-auto px-6 text-center">
+            <h2 class="text-4xl font-bold mb-8">Let's Connect</h2>
+            <p class="text-lg max-w-xl mx-auto mb-12">
+                If you'd like to discuss AI, cloud architecture, or simply want to connect, feel free to reach out!
             </p>
-
-            <div class="row">
-
-               <div class="columns contact-details">
-
-                  <h2>Contact Details</h2>
-                  <p class="address">
-						   <span>Vaibhav Goswami</span><br>
-						   <span>Manoramaganj<br>
-						         Indore, MP 452001 IN
-                     </span><br>
-                     <span>vabg96@gmail.com</span>
-					   </p>
-
-               </div>
-
-               <div class="columns download">
-                  <p>
-                     <a href="resume/Resume.pdf" class="button"><i class="fa fa-download"></i>Download Resume</a>
-                  </p>
-               </div>
-
-            </div> <!-- end row -->
-
-         </div> <!-- end .main-col -->
-
-      </div>
-
-   </section> <!-- About Section End-->
-
-
-   <!-- Resume Section
-   ================================================== -->
-   <section id="resume">
-
-      <!-- Work
-      ----------------------------------------------- -->
-      <div class="row work">
-
-         <div class="three columns header-col">
-            <h1><span>Work</span></h1>
-         </div>
-
-         <div class="nine columns main-col">
-
-            <div class="row item">
-
-               <div class="twelve columns">
-
-                  <!-- Thomson Reuters -->
-
-                  <h3>Thomson Reuters, Bangalore India</h3>
-                  <h5>Senior AI Software Engineer <span>&bull;</span> <em class="date">June 2022 - Present</em></h5>
-
-                  <p>I am involved in developing the AI Platform for the Data & Analytics Department.
-                  </p>
-                  <br>
-               </div>
-
-            </div> <!-- item end -->
-
-            <div class="row item">
-
-               <div class="twelve columns">
-
-                  <!-- HSBC SSE -->
-
-                  <h3>HSBC Technology, Hyderabad India</h3>
-                  <h5>Senior Software Engineer <span>&bull;</span> <em class="date">September 2021 - May 2022</em></h5>
-
-                  <p class="info">Promoted to Senior Software Engineer for my exceptional performace.
-                  </p>
-                  <dl>
-                     <dt>Cloud Admin </dt>
-                     <dd>I was involved in setting up & managing the cloud infrastructure of a Cloud Migration project. My role was connecting with the Product Owners for migrating their data from on-premises to Google Cloud Platform.
-                     </dd>
-
-                     <dt>Devops Engineer </dt>
-                     <dd>Implemented a Automated Terraform Pipeline thus making the production deployments seamless and more efficient. </dd>
-                     <dd>This Infrastructure as Code also reduced human based errors in production enviroments by over 95% and is version controlled by Git.</dd>
-                     <dd>The terraform pipeline is used for Compute Engines, Managed Instance Groups, Load Balancers, Cloud Storage Buckets & BigQuery Resources.
-                     </dd>
-                  </dl>
-                  
-                  <!-- HSBC Software Engineer -->
-                  <h5>Software Engineer <span>&bull;</span> <em class="date">July 2019 - August 2021</em></h5>
-
-                  <p class="info">Was part of the Global Technology Graduate Program for HSBC in 2019
-                  </p>
-                  
-                  <dl>
-                     <dt>Machine Learning Engineer </dt>
-                     <dd>Designed & developed an Automated Machine Learning Pipeline from scratch to democratize Machine Learning in the Organization.</dd>
-                     <dd> Automated 90% of the manual efforts required in training & deploying a ML model. The tool was hosted on Kubernetes, with the interface built on Flask.
-                     </dd>
-
-                     <dt>Python Developer</dt>
-                     <dd>&bull; Built an Automatic Test Data Generator to generate pseudo-data matching the production DB table schema for testing pipelines in Dev & UAT pipelines. Deployed this tool using Python Dash-Flask framework.
-                     </dd>
-
-                     <dd>&bull; Created a Python Web API serving on Google Cloud Platform, which performed as a search engine
-                     for over 50+ Data Assets.</dd>
-                  </dl>
-                  <br>
-               </div>
-
-            </div> <!-- item end -->
-
-            <div class="row item">
-
-               <div class="twelve columns">
-
-                  <h3>UST Global, Chennai IN</h3>
-                  <h5>Image Analytics Intern <span>&bull;</span> <em class="date">July 2018 - December 2018</em></h5>
-
-                  <dl>Developed Car Damage Detection Algorithm which would estimage the damages in individual parts from the images of the car.
-                     <dt>Object Detection</dt>
-                     <dd>Created a Mask-RCNN Model to Segment individual Car parts with 91% accuracy.</dd>
-                     <dt>Image Classification</dt>
-                     <dd>Developed an Image Classification Model to differentiate between a damaged car part and undamaged with 83% accuracy.</dd>
-                     <dt>Image Classification (Multi Class)</dt>
-                     <dd>If Classified as a damaged part, the image segment was further processed to feed into another classifier which identifies the severity of the damage. For this, I developed an multi class Image Classification Model to identify the severity of the damage part into 3 categories i.e <i>Minor, Moderate & Severe</i>.</dd>
-                  </dl>
-                   <div class="twelve columns">
-
-                     <img class="profile-pic"  src="images/ust_1.png" alt="" />
-                     <img class="profile-pic"  src="images/ust_2.png" alt="" />
-
-                  </div>
-
-               </div>
-
-            </div> <!-- item end -->
-
-         </div> <!-- main-col end -->
-
-      </div> <!-- End Work -->
-
-
-      <!-- Education
-      ----------------------------------------------- -->
-      <div class="row education">
-
-         <div class="three columns header-col">
-            <h1><span>Education</span></h1>
-         </div>
-
-         <div class="nine columns main-col">
-
-            <div class="row item">
-
-               <div class="twelve columns">
-
-                  <h3>Birla Institute of Technology and Science (BITS), Pilani - Goa Campus</h3>
-                  <p class="info">Bachelors in Electronics and Instrumentation
-				  <p class="info">
-
-                  <p>I graduated from the University at August 2019. During my time in BITS Goa, I did multiple courses in the areas of Object Oriented Programming, Software Development for Portable Devices, Cryptography, Digital Image Processing. I also worked on multiple projects as a part of course curriculum.
-				  </p>
-
-               </div>
-
-            </div> <!-- item end -->
-
-            <div class="row item">
-
-               <div class="twelve columns">
-
-                  <h3>The Bhavans Prominent International School</h3>
-                  <p class="info">Grade 12th <span>&bull;</span> Physics-Chemistry-Mathematics-Computer Science </p>
-
-               </div>
-
-            </div> <!-- item end -->
-
-         </div> <!-- main-col end -->
-
-      </div> <!-- End Education -->
-
-
-      <!-- Skills
-      ----------------------------------------------- -->
-      <div class="row skill">
-
-         <div class="three columns header-col">
-            <h1><span>Skills</span></h1>
-         </div>
-
-         <div class="nine columns main-col">
-
-            <p>Python, Flask, Tensorflow 2.0, Machine Learning, Computer Vision, Google Cloud Platform, Kubernetes, Terraform, BigQuery
-            </p>
-
-				<!--<div class="bars">
-
-				   <ul class="skills">
-					   <li><span class="bar-expand photoshop"></span><em>Photoshop</em></li>
-                  <li><span class="bar-expand illustrator"></span><em>Illustrator</em></li>
-						<li><span class="bar-expand wordpress"></span><em>Wordpress</em></li>
-						<li><span class="bar-expand css"></span><em>CSS</em></li>
-						<li><span class="bar-expand html5"></span><em>HTML5</em></li>
-                  <li><span class="bar-expand jquery"></span><em>jQuery</em></li>
-					</ul>
-
-				</div>--><!-- end skill-bars -->
-
-			</div> <!-- main-col end -->
-
-      </div> <!-- End skills -->
-
-   </section> <!-- Resume Section End-->
-
-
-   <!-- Portfolio Section
-   ================================================== -->
-   <section id="portfolio">
-
-      <div class="row">
-
-         <div class="twelve columns collapsed">
-
-            <h1>CHECK OUT A FEW OF MY PROFESSIONAL CERTIFICATIONS</h1>
-
-            <!-- portfolio-wrapper -->
-            <div id="portfolio-wrapper" class="bgrid-quarters s-bgrid-thirds cf">
-
-               <div class="columns portfolio-item">
-                  <div class="item-wrap">
-
-                     <a href="#modal-03" title="">
-                        <img alt="" src="https://api.accredible.com/v1/frontend/credential_website_embed_image/badge/43689663">
-                        <div class="overlay">
-                           <div class="portfolio-item-meta">
-                              <h5>Professional Data Engineer</h5>
-                              <p>Google Cloud Platform</p>
-                           </div>
-                        </div>
-                        <div class="link-icon"><i class="icon-plus"></i></div>
-                     </a>
-
-                  </div>
-               </div> <!-- item end -->
-
-          	   <div class="columns portfolio-item">
-                  <div class="item-wrap">
-
-                     <a href="#modal-01" title="">
-                        <img alt="" src="https://api.accredible.com/v1/frontend/credential_website_embed_image/badge/56230840">
-                        <div class="overlay">
-                           <div class="portfolio-item-meta">
-          					      <h5>Tensorflow Developer Certification</h5>
-                              <p>Tensorflow.org</p>
-          					   </div>
-                        </div>
-                        <div class="link-icon"><i class="icon-plus"></i></div>
-                     </a>
-
-                  </div>
-          		</div> <!-- item end -->
-
-               <div class="columns portfolio-item">
-                  <div class="item-wrap">
-
-                     <a href="#modal-02" title="">
-                        <img alt="" src="https://api.accredible.com/v1/frontend/credential_website_embed_image/badge/23519629">
-                        <div class="overlay">
-                           <div class="portfolio-item-meta">
-          					      <h5>Associate Cloud Engineer</h5>
-                              <p>Google Cloud Platform</p>
-          					   </div>
-                        </div>
-                        <div class="link-icon"><i class="icon-plus"></i></div>
-                     </a>
-
-                  </div>
-          		</div> <!-- item end -->
-
-               
-            </div> <!-- portfolio-wrapper end -->
-
-         </div> <!-- twelve columns end -->
-
-
-         <!-- Modal Popup
-	      --------------------------------------------------------------- -->
-
-         <div id="modal-01" class="popup-modal mfp-hide">
-
-		      <img class="scale-with-grid" src="https://api.accredible.com/v1/frontend/credential_website_embed_image/certificate/56230840" alt="" />
-
-		      <div class="description-box">
-			      <h4>Tensorflow Developer Certification</h4>
-			      <p>Tensorflow.org</p>
-               <span class="categories"><i class="fa fa-tag">Machine Learning</span>
-		      </div>
-
-            <div class="link-box">
-               <a href="https://www.credential.net/3fae1ff4-d07e-4f0f-83a1-9bbd9213eb9e">Certificate Link</a>
-		         <a class="popup-modal-dismiss">Close</a>
+            <div class="flex justify-center space-x-6 mb-8">
+                <a href="https://github.com/bluekap" class="bg-glass p-4 rounded-full hover:bg-white hover:text-black transition-all">
+                    <i class="fab fa-github text-2xl"></i>
+                </a>
+                <a href="https://www.linkedin.com/in/vaibhav-goswami3/" class="bg-glass p-4 rounded-full hover:bg-white hover:text-blue-600 transition-all">
+                    <i class="fab fa-linkedin text-2xl"></i>
+                </a>
+                <a href="mailto:vabg96@gmail.com" class="bg-glass p-4 rounded-full hover:bg-white hover:text-red-500 transition-all">
+                    <i class="fas fa-envelope text-2xl"></i>
+                </a>
             </div>
+            <a href="resume/Resume.pdf" class="inline-block bg-blue-500 text-white px-6 py-3 rounded-lg hover:bg-blue-600 transition-colors">
+                <i class="fas fa-download mr-2"></i>Download Resume
+            </a>
+        </div>
+    </section>
 
-	      </div><!-- modal-01 End -->
-
-         <div id="modal-02" class="popup-modal mfp-hide">
-
-		      <img class="scale-with-grid" src="https://api.accredible.com/v1/frontend/credential_website_embed_image/certificate/23519629" alt="" />
-
-		      <div class="description-box">
-			      <h4>Associate Cloud Engineer</h4>
-			      <p>Google CLoud</p>
-               <span class="categories"><i class="fa fa-tag"></i>Google Cloud Platform</span>
-		      </div>
-
-            <div class="link-box">
-               <a href="https://www.credential.net/db92f2e6-0983-4ad6-a569-5392b04c6e20">Certificate Link</a>
-		         <a class="popup-modal-dismiss">Close</a>
+    <footer class="py-8 bg-gray-900 text-gray-400">
+        <div class="container mx-auto px-6 text-center space-y-4">
+            <p>&copy; 2024 Vaibhav Goswami. All rights reserved.</p>
+            <div class="flex justify-center space-x-4">
+                <a href="#about" class="hover:text-blue-400">About</a>
+                <a href="#skills" class="hover:text-blue-400">Skills</a>
+                <a href="#experience" class="hover:text-blue-400">Experience</a>
+                <a href="#contact" class="hover:text-blue-400">Contact</a>
+                <a href="resume/Resume.pdf" class="hover:text-blue-400">Resume</a>
             </div>
-
-	      </div><!-- modal-02 End -->
-
-         <div id="modal-03" class="popup-modal mfp-hide">
-
-		      <img class="scale-with-grid" src="https://api.accredible.com/v1/frontend/credential_website_embed_image/certificate/43689663" alt="" />
-
-		      <div class="description-box">
-			      <h4>Professional Data Engineer</h4>
-			      <p>Google Cloud</p>
-               <span class="categories"><i class="fa fa-tag"></i>Google Cloud Platform</span>
-		      </div>
-
-            <div class="link-box">
-               <a href="https://www.credential.net/c0da5c1e-d3b8-40ee-baa7-9dcd9cda122e">Certificate Link</a>
-		         <a class="popup-modal-dismiss">Close</a>
-            </div>
-
-	      </div><!-- modal-03 End -->
-       
-      </div> <!-- row End -->
-
-   </section> <!-- Portfolio Section End-->
-
-
-  
-   <!-- Testimonials Section
-   ================================================== -->
-   <section id="testimonials">
-
-      <div class="text-container">
-
-         <div class="row">
-
-            <div class="two columns header-col">
-
-               <h1><span>Client Testimonials</span></h1>
-
-            </div>
-
-            <div class="ten columns flex-container">
-
-               <div class="flexslider">
-
-                  <ul class="slides">
-
-                     <li>
-                        <blockquote>
-                           <p>Patience is the key element of Success.
-                           </p>
-                           <cite>Bill Gates</cite>
-                        </blockquote>
-                     </li> <!-- slide ends -->
-
-                     <li>
-                        <blockquote>
-                           <p>Only I can change my life. No one can do it for me.
-                           </p>
-                           <cite>Carol Burnett</cite>
-                        </blockquote>
-                     </li> <!-- slide ends -->
-
-                  </ul>
-
-               </div> <!-- div.flexslider ends -->
-
-            </div> <!-- div.flex-container ends -->
-
-         </div> <!-- row ends -->
-
-       </div>  <!-- text-container ends -->
-
-   </section> <!-- Testimonials Section End-->
-
-
-   <!-- Contact Section
-   ================================================== -->
-   <section id="contact">
-
-         <div class="row section-head">
-
-            <div class="two columns header-col">
-
-               <h1><span>Get In Touch.</span></h1>
-
-            </div>
-
-            <div class="ten columns">
-
-                  <p class="lead">Get in touch with me.
-                  </p>
-
-            </div>
-
-         </div>
-
-         <div class="row">
-
-            <div class="eight columns">
-
-               <!-- form -->
-               <form method="post" id="contactForm" name="contactForm" action="https://docs.google.com/forms/d/e/1FAIpQLScl_dOOITGQrANp0VuumcCE3O6ySfE_XIixkox6G9aaZF3Hyw/formResponse?" target="hidden_iframe" onsubmit="submitted=true;">
-					<fieldset>
-
-                  <div>
-						   <label for="entry.1025626236">Name <span class="required">*</span></label>
-						   <input type="text" value="" size="35" id="entry.1025626236" name="entry.1025626236">
-                  </div>
-
-                  <div>
-						   <label for="entry.187643710">Email <span class="required">*</span></label>
-						   <input type="text" value="" size="35" id="entry.187643710" name="entry.187643710">
-                  </div>
-
-                  <div>
-						   <label for="entry.1104626675">Subject</label>
-						   <input type="text" value="" size="35" id="entry.1104626675" name="entry.1104626675">
-                  </div>
-
-                  <div>
-                     <label for="entry.213134376">Message <span class="required">*</span></label>
-                     <textarea cols="50" rows="15" id="entry.213134376" name="entry.213134376"></textarea>
-                  </div>
-
-                  <div>
-                     <input type="submit" value="Submit">
-                     <span id="image-loader">
-                        <img alt="" src="images/loader.gif">
-                     </span>
-                  </div>
-
-					</fieldset>
-				   </form> <!-- Form End -->
-               <iframe name="hidden_iframe" id="hidden_iframe" style="display:none;" onload="if(submitted) {}"></iframe>
-               <script src="js/jquery-1.10.2.min.js"></script>
-                  <script type="text/javascript">var submitted=false;</script>
-                  <script type="text/javascript">
-                  $('#contactForm').on('submit', function(e) {
-                    $('#contactForm *').fadeOut(2000);
-                    $('#contactForm').prepend('Thanks for Contacting. Your Submission has been Processed.');
-                    });
-               </script>
-               <!-- contact-warning -->
-               <div id="message-warning"> Error boy</div>
-               <!-- contact-success -->
-				   <div id="message-success">
-                  <i class="fa fa-check"></i>Your message was sent, thank you!<br>
-				   </div>
-
-            </div>
-
-
-            <aside class="four columns footer-widgets">
-
-               <div class="widget widget_contact">
-
-					   <h4>Address and Phone</h4>
-					   <p class="address">
-					   <span>Vaibhav Goswami</span><br>
-						   <span>Manoramaganj<br>
-						         Indore, MP 452001 IN
-                     </span><br>
-                     <span>vabg96@gmail.com</span>
-					   </p>
-
-				   </div>
-
-              
-            </aside>
-
-      </div>
-
-   </section> <!-- Contact Section End-->
-
-
-   <!-- footer
-   ================================================== -->
-   <footer>
-
-      <div class="row">
-
-         <div class="twelve columns">
-
-            <ul class="social-links">
-				<li><a href="https://www.linkedin.com/in/vaibhav-goswami3/"><i class="fa fa-linkedin"></i></a></li>
-				<li><a href="https://github.com/bluekap"><i class="fa fa-github"></i></a></li>
-				<li><a href="https://www.instagram.com/vabgos/"><i class="fa fa-instagram"></i></a></li>
-            </ul>
-
-            <ul class="copyright">
-               <li>&copy; Copyright 2020 Vaibhav Goswami</li>
-               <li>Template by <a title="Styleshout" href="http://www.styleshout.com/">Styleshout</a></li>   
-            </ul>
-
-         </div>
-
-         <div id="go-top"><a class="smoothscroll" title="Back to Top" href="#home"><i class="icon-up-open"></i></a></div>
-
-      </div>
-
-   </footer> <!-- Footer End-->
-
-   <!-- Java Script
-   ================================================== -->
-   <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
-   <script>window.jQuery || document.write('<script src="js/jquery-1.10.2.min.js"><\/script>')</script>
-   <script type="text/javascript" src="js/jquery-migrate-1.2.1.min.js"></script>
-
-   <script src="js/jquery.flexslider.js"></script>
-   <script src="js/waypoints.js"></script>
-   <script src="js/jquery.fittext.js"></script>
-   <script src="js/magnific-popup.js"></script>
-   <script src="js/init.js"></script>
+        </div>
+    </footer>
 
 </body>
-
 </html>
