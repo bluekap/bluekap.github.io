@@ -1,0 +1,19 @@
+# Kiro IDE
+.kiro/
+
+# Logs
+debug.log
+*.log
+
+# OS Files
+.DS_Store
+Thumbs.db
+
+# Editor directories
+.vscode/
+.idea/
+
+# Temporary files
+*.tmp
+*.bak
+*~
