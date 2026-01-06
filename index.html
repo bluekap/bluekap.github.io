@@ -9,85 +9,126 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.css" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
-    <style>
-        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500&family=Outfit:wght@300;400;500;600;700;800&display=swap"
+        rel="stylesheet">
 
-        * {
-            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    <style>
+        :root {
+            --glass-border: rgba(255, 255, 255, 0.08);
+            --glass-bg: rgba(255, 255, 255, 0.03);
+            --primary-glow: rgba(56, 189, 248, 0.5);
+            --secondary-glow: rgba(139, 92, 246, 0.5);
         }
 
+        * {
+            font-family: 'Inter', sans-serif;
+            scroll-behavior: smooth;
+        }
+
+        h1,
+        h2,
+        h3,
+        h4,
+        h5,
+        h6,
+        .display-font {
+            font-family: 'Outfit', sans-serif;
+        }
+
+        body {
+            background-color: #020617;
+            color: #e2e8f0;
+            overflow-x: hidden;
+        }
+
+        /* Enhanced Glassmorphism */
         .bg-glass {
-            background: rgba(255, 255, 255, 0.06);
-            backdrop-filter: blur(12px);
-            border: 1px solid rgba(255, 255, 255, 0.08);
-            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            background: var(--glass-bg);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid var(--glass-border);
+            box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.36);
+            transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
         }
 
         .bg-glass:hover {
-            background: rgba(255, 255, 255, 0.1);
+            background: rgba(255, 255, 255, 0.06);
             border: 1px solid rgba(255, 255, 255, 0.15);
-            transform: translateY(-2px);
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+            transform: translateY(-4px);
+            box-shadow:
+                0 20px 40px -10px rgba(0, 0, 0, 0.5),
+                0 0 20px rgba(56, 189, 248, 0.1);
         }
 
+        /* Midnight Aurora Background */
+        /* Midnight Aurora Background - Refined */
         .gradient-bg {
-            background: linear-gradient(135deg,
-                    rgba(15, 23, 42, 0.95),
-                    rgba(30, 41, 59, 0.95),
-                    rgba(51, 65, 85, 0.95));
-            background-size: 200% 200%;
-            animation: gradientMove 20s ease infinite;
+            background: radial-gradient(circle at top left, #0f172a, #020617);
             position: relative;
-            overflow: hidden;
+            z-index: 0;
+        }
+
+        .gradient-bg::before,
+        .gradient-bg::after {
+            content: '';
+            position: absolute;
+            width: 800px;
+            height: 800px;
+            border-radius: 50%;
+            filter: blur(120px);
+            opacity: 0.12;
+            z-index: -1;
+            animation: orbFloat 25s infinite alternate cubic-bezier(0.4, 0, 0.2, 1);
         }
 
         .gradient-bg::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background:
-                radial-gradient(circle at 20% 30%, rgba(56, 189, 248, 0.12) 0%, transparent 50%),
-                radial-gradient(circle at 80% 70%, rgba(99, 102, 241, 0.12) 0%, transparent 50%),
-                radial-gradient(circle at 50% 50%, rgba(168, 85, 247, 0.08) 0%, transparent 60%);
-            pointer-events: none;
-            animation: float 15s ease-in-out infinite;
+            background: #38bdf8;
+            top: -150px;
+            left: -150px;
         }
 
-        @keyframes float {
+        .gradient-bg::after {
+            background: #a855f7;
+            bottom: -150px;
+            right: -150px;
+            animation-delay: -10s;
+        }
 
-            0%,
-            100% {
+        /* Grain Overlay for Texture */
+        .grain-overlay {
+            position: absolute;
+            inset: 0;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%' height='100%' filter='url(%23noise)' opacity='0.05'/%3E%3C/svg%3E");
+            opacity: 0.07;
+            pointer-events: none;
+            z-index: 1;
+            mix-blend-mode: overlay;
+        }
+
+        @keyframes orbFloat {
+            0% {
                 transform: translate(0, 0) scale(1);
             }
 
-            33% {
-                transform: translate(30px, -30px) scale(1.1);
-            }
-
-            66% {
-                transform: translate(-20px, 20px) scale(0.9);
+            100% {
+                transform: translate(50px, 50px) scale(1.1);
             }
         }
 
+        /* Text Gradients */
         .gradient-text {
-            background: linear-gradient(120deg, #38bdf8, #818cf8, #a78bfa);
-            background-size: 200% auto;
-            background-clip: text;
+            background: linear-gradient(135deg, #38bdf8 0%, #818cf8 50%, #c084fc 100%);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
-            animation: shimmer 3s linear infinite;
+            background-clip: text;
+            background-size: 200% 200%;
+            animation: gradientTextMove 8s ease infinite;
         }
 
-        @keyframes shimmer {
-            to {
-                background-position: 200% center;
-            }
-        }
-
-        @keyframes gradientMove {
+        @keyframes gradientTextMove {
             0% {
                 background-position: 0% 50%;
             }
@@ -101,206 +142,173 @@
             }
         }
 
-        .profile-img {
-            box-shadow:
-                0 0 40px rgba(56, 189, 248, 0.25),
-                0 0 80px rgba(99, 102, 241, 0.15),
-                0 10px 30px rgba(0, 0, 0, 0.3);
-            transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
-            border: 3px solid rgba(255, 255, 255, 0.1);
-        }
-
-        .profile-img:hover {
-            transform: scale(1.05) rotate(2deg);
-            box-shadow:
-                0 0 60px rgba(56, 189, 248, 0.4),
-                0 0 120px rgba(99, 102, 241, 0.25),
-                0 20px 50px rgba(0, 0, 0, 0.4);
-            border-color: rgba(56, 189, 248, 0.3);
-        }
-
-        .social-icon {
-            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        /* Profile Image Glow */
+        .profile-wrapper {
             position: relative;
+            z-index: 1;
         }
 
-        .social-icon:hover {
-            transform: translateY(-5px) scale(1.1);
-        }
-
-        .social-icon::after {
+        .profile-wrapper::after {
             content: '';
             position: absolute;
-            inset: -2px;
+            inset: -4px;
             border-radius: 50%;
-            background: linear-gradient(45deg, #38bdf8, #818cf8);
-            opacity: 0;
+            background: linear-gradient(45deg, #38bdf8, #a855f7);
             z-index: -1;
-            transition: opacity 0.4s ease;
+            filter: blur(20px);
+            opacity: 0.4;
+            animation: pulse-glow 3s infinite alternate;
         }
 
-        .social-icon:hover::after {
-            opacity: 0.3;
+        @keyframes pulse-glow {
+            0% {
+                opacity: 0.3;
+                transform: scale(0.95);
+            }
+
+            100% {
+                opacity: 0.6;
+                transform: scale(1.05);
+            }
         }
 
-        .typing-container {
-            display: inline-block;
-            min-height: 1.5em;
+        /* Scroll Reveal Animations */
+        .reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s cubic-bezier(0.5, 0, 0, 1);
         }
 
-        .typing-container::after {
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .stagger-1 {
+            transition-delay: 100ms;
+        }
+
+        .stagger-2 {
+            transition-delay: 200ms;
+        }
+
+        .stagger-3 {
+            transition-delay: 300ms;
+        }
+
+        /* Modern Scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: #020617;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: #334155;
+            border-radius: 4px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: #475569;
+        }
+
+        /* Typing Cursor */
+        .typing-cursor::after {
             content: '|';
-            animation: blink 1s infinite;
-            margin-left: 3px;
+            animation: blink 1s step-end infinite;
             color: #38bdf8;
+            margin-left: 4px;
             font-weight: 300;
         }
 
         @keyframes blink {
 
             0%,
-            49% {
-                opacity: 1;
-            }
-
-            50%,
             100% {
-                opacity: 0;
-            }
-        }
-
-        .hero-min-height {
-            min-height: 100vh;
-        }
-
-        .highlight-text {
-            color: #60a5fa;
-            font-weight: 600;
-        }
-
-        html {
-            scroll-behavior: smooth;
-        }
-
-        .hero-content {
-            animation: fadeInUp 1.2s cubic-bezier(0.4, 0, 0.2, 1);
-        }
-
-        @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(40px);
-            }
-
-            to {
                 opacity: 1;
-                transform: translateY(0);
+            }
+
+            50% {
+                opacity: 0;
             }
         }
 
-        .grain-overlay {
-            position: absolute;
-            inset: 0;
-            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%' height='100%' filter='url(%23noise)' opacity='0.1'/%3E%3C/svg%3E");
-            pointer-events: none;
-            opacity: 0.12;
-            z-index: 1;
-        }
-
-        .card-hover {
-            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-        }
-
-        .card-hover:hover {
-            transform: translateY(-4px);
-        }
-
-        .section-title {
-            position: relative;
-            display: inline-block;
-        }
-
-        .section-title::after {
-            content: '';
-            position: absolute;
-            bottom: -8px;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 60px;
-            height: 3px;
-            background: linear-gradient(90deg, #38bdf8, #818cf8);
-            border-radius: 2px;
-        }
-
-        .timeline-dot {
-            transition: all 0.3s ease;
-        }
-
-        .timeline-item:hover .timeline-dot {
-            transform: scale(1.5);
-            box-shadow: 0 0 20px rgba(56, 189, 248, 0.6);
-        }
-
-        .skill-badge {
-            display: inline-block;
-            padding: 0.25rem 0.75rem;
-            background: rgba(56, 189, 248, 0.1);
-            border: 1px solid rgba(56, 189, 248, 0.3);
-            border-radius: 9999px;
+        /* Skill Pill */
+        .skill-pill {
+            background: rgba(56, 189, 248, 0.05);
+            border: 1px solid rgba(56, 189, 248, 0.2);
+            color: #bae6fd;
+            padding: 0.5rem 1rem;
+            border-radius: 99px;
             font-size: 0.875rem;
             transition: all 0.3s ease;
+            display: inline-flex;
+            align-items: center;
         }
 
-        .skill-badge:hover {
-            background: rgba(56, 189, 248, 0.2);
-            border-color: rgba(56, 189, 248, 0.5);
-            transform: scale(1.05);
+        .skill-pill:hover {
+            background: rgba(56, 189, 248, 0.15);
+            border-color: rgba(56, 189, 248, 0.4);
+            transform: translateY(-2px);
+            box-shadow: 0 0 15px rgba(56, 189, 248, 0.15);
+        }
+
+        /* Section Separator */
+        .section-separator {
+            width: 100%;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, rgba(56, 189, 248, 0.2), transparent);
+            margin: 4rem 0;
         }
     </style>
 </head>
 
 <body class="bg-gray-900 text-white">
     <!-- Hero Section -->
-    <section class="hero-min-height gradient-bg flex items-center justify-center relative pt-20">
+    <section class="min-h-screen gradient-bg flex items-center justify-center relative pt-20 overflow-hidden">
         <div class="grain-overlay"></div>
-        <div class="container mx-auto px-6 z-10 pb-16"> <!-- Added padding bottom -->
+        <!-- Ambient Background Glows -->
+        <div class="absolute top-1/4 left-1/4 w-96 h-96 bg-blue-500/20 rounded-full blur-3xl animate-pulse"></div>
+        <div class="absolute bottom-1/4 right-1/4 w-96 h-96 bg-purple-500/20 rounded-full blur-3xl animate-pulse"
+            style="animation-delay: 2s;"></div>
+
+        <div class="container mx-auto px-6 z-10 pb-16">
             <div class="flex flex-col items-center text-center hero-content">
-                <img src="images/profilepic.jpg" alt="Vaibhav Goswami"
-                    class="rounded-full border-2 border-sky-400/30 profile-img mb-8 w-32 h-32 md:w-40 md:h-40 object-cover">
-
-                <h1 class="text-5xl md:text-7xl font-bold mb-6 tracking-tight text-white/95"
-                    style="letter-spacing: -0.02em;">
-                    Vaibhav Goswami
-                </h1>
-
-                <div class="h-10 mb-10">
-                    <span class="text-xl md:text-3xl font-light typing-container gradient-text" id="typing-text"></span>
+                <div class="profile-wrapper mb-10">
+                    <img src="images/profilepic.jpg" alt="Vaibhav Goswami"
+                        class="rounded-full border-2 border-white/10 w-32 h-32 md:w-48 md:h-48 object-cover relative z-10 transition-transform duration-500 hover:scale-105">
                 </div>
 
-                <p class="text-lg md:text-xl max-w-3xl mb-8 leading-relaxed text-gray-200 font-light">
-                    Leading the <span class="font-semibold text-white">Generative AI Platform</span> at Thomson Reuters,
-                    empowering teams to build production-ready AI solutions including agentic workflows,
-                    automated RAG deployments, and multi-agent systems.
+                <h1 class="text-6xl md:text-8xl font-bold mb-6 tracking-tighter text-white drop-shadow-lg">
+                    Vaibhav <span class="gradient-text">Goswami</span>
+                </h1>
+
+                <div class="h-12 mb-10 flex items-center justify-center">
+                    <span class="text-2xl md:text-4xl font-light typing-container text-blue-200"
+                        id="typing-text"></span>
+                </div>
+
+                <p class="text-lg md:text-xl max-w-3xl mb-8 leading-relaxed text-gray-300 font-light reveal stagger-1">
+                    Leading the <span class="text-white font-medium border-b border-blue-400/30 pb-0.5">Generative AI
+                        Platform</span> at Thomson Reuters.
+                    Orchestrating multi-LLM systems for <span class="text-white font-medium">20,000+ users</span>.
                 </p>
 
-                <p class="text-base md:text-lg max-w-2xl mb-12 leading-relaxed text-gray-300 font-light">
-                    Passionate about transforming complex challenges into elegant,
-                    scalable architectures that drive innovation and deliver real-world impact.
-                </p>
-
-                <div class="flex space-x-8">
+                <div class="flex space-x-6 reveal stagger-2">
                     <a href="https://github.com/bluekap" target="_blank" rel="noopener noreferrer"
-                        class="social-icon bg-glass p-4 rounded-full hover:bg-white hover:text-black transition-all">
-                        <i class="fab fa-github text-2xl"></i>
+                        class="social-icon bg-glass p-4 rounded-full text-gray-300 hover:text-white hover:bg-white/10 transition-all group">
+                        <i class="fab fa-github text-2xl group-hover:scale-110 transition-transform"></i>
                     </a>
                     <a href="https://www.linkedin.com/in/vaibhav-goswami3/" target="_blank" rel="noopener noreferrer"
-                        class="social-icon bg-glass p-4 rounded-full hover:bg-white hover:text-blue-600 transition-all">
-                        <i class="fab fa-linkedin text-2xl"></i>
+                        class="social-icon bg-glass p-4 rounded-full text-gray-300 hover:text-blue-400 hover:bg-white/10 transition-all group">
+                        <i class="fab fa-linkedin text-2xl group-hover:scale-110 transition-transform"></i>
                     </a>
                     <a href="https://mail.google.com/mail/?view=cm&fs=1&to=vabg96@gmail.com" target="_blank"
                         rel="noopener noreferrer"
-                        class="social-icon bg-glass p-4 rounded-full hover:bg-white hover:text-red-500 transition-all">
-                        <i class="fas fa-envelope text-2xl"></i>
+                        class="social-icon bg-glass p-4 rounded-full text-gray-300 hover:text-red-400 hover:bg-white/10 transition-all group">
+                        <i class="fas fa-envelope text-2xl group-hover:scale-110 transition-transform"></i>
                     </a>
                 </div>
             </div>
@@ -308,6 +316,24 @@
     </section>
 
     <script>
+        // Scroll Reveal Observer
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('active');
+                }
+            });
+        }, observerOptions);
+
+        document.addEventListener('DOMContentLoaded', () => {
+            const revealElements = document.querySelectorAll('.reveal');
+            revealElements.forEach(el => observer.observe(el));
+        });
 
         // Advanced typing animation
         const phrases = [
@@ -328,15 +354,18 @@
             const currentPhrase = phrases[phraseIndex];
             const typingElement = document.getElementById('typing-text');
 
+            if (!typingElement) return;
+
             if (isDeleting) {
                 // Deleting text
                 charIndex--;
                 typingElement.textContent = currentPhrase.substring(0, charIndex);
+                typingElement.classList.add('typing-cursor'); // Ensure cursor is present
 
                 if (charIndex === 0) {
                     isDeleting = false;
                     phraseIndex = (phraseIndex + 1) % phrases.length;
-                    setTimeout(type, 500); // Pause before typing next phrase
+                    setTimeout(type, 500);
                     return;
                 }
             } else {
@@ -346,46 +375,60 @@
 
                 if (charIndex === currentPhrase.length) {
                     isDeleting = true;
-                    setTimeout(type, 2000); // Wait before starting to delete
+                    // Pulse cursor while waiting
+                    typingElement.classList.add('typing-cursor');
+                    setTimeout(type, 2000);
                     return;
                 }
             }
 
-            // Randomize typing speed for more natural effect
-            const delta = isDeleting ? 50 : Math.random() * 100 + 50;
+            const delta = isDeleting ? 30 : Math.random() * 50 + 50;
             setTimeout(type, delta);
         }
 
-        // Start the typing animation
+        // Start animation
         setTimeout(type, 1000);
     </script>
 
     <!-- About Section -->
-    <section id="about" class="py-24 bg-gray-800/50">
-        <div class="container mx-auto px-6">
-            <h2 class="text-4xl md:text-5xl font-bold text-center mb-16 section-title">About Me</h2>
+    <section id="about" class="py-32 relative">
+        <div class="container mx-auto px-6 relative z-10">
+            <h2 class="text-4xl md:text-5xl font-bold text-center mb-16 section-title reveal">About Me</h2>
             <div class="max-w-4xl mx-auto">
-                <div class="bg-glass rounded-2xl p-8 md:p-12">
-                    <p class="text-lg md:text-xl leading-relaxed mb-8 text-gray-200 font-light">
-                        I'm <span class="font-semibold text-white">Vaibhav Goswami</span>, an AI and Cloud Engineer
-                        currently
-                        <span class="highlight-text">leading the Generative AI Platform</span> at Thomson Reuters.
-                        This platform enables teams across the organization to develop, deploy, and scale their own
-                        generative AI solutions from concept to production.
+                <div class="bg-glass rounded-3xl p-8 md:p-12 border border-white/5 reveal stagger-1">
+                    <p class="text-lg md:text-xl leading-relaxed mb-8 text-gray-300 font-light">
+                        I architect and build AI systems that <span class="text-blue-400 font-medium">democratize
+                            access</span> to cutting-edge technology at enterprise scale.
                     </p>
-                    <p class="text-lg md:text-xl leading-relaxed mb-8 text-gray-200 font-light">
-                        With a background in <span class="font-semibold text-white">Electronics and
-                            Instrumentation</span> from BITS Pilani,
-                        I specialize in architecting scalable AI systems, optimizing cloud infrastructure, and building
-                        platforms
-                        that democratize AI capabilities across enterprise environments.
+                    <p class="text-lg md:text-xl leading-relaxed mb-8 text-gray-300 font-light">
+                        The platform I lead integrates <span class="text-purple-400 font-medium">Claude, GPT-4, Gemini,
+                            and
+                            Llama</span> models, enabling non-technical professionals to build sophisticated AI
+                        workflows without code. This work was recently featured on <span
+                            class="gradient-text font-medium">AWS's
+                            Machine Learning Blog</span> as a case study in enterprise AI architecture.
                     </p>
-                    <p class="text-lg md:text-xl leading-relaxed text-gray-200 font-light">
-                        My expertise spans <span class="font-semibold text-white">Python, MLOps, Kubernetes, and cloud
-                            technologies</span>,
-                        with a focus on creating elegant solutions to complex technical challenges. Outside of work, I
-                        stay engaged
-                        with the latest AI advancements and enjoy sharing insights with the tech community.
+
+                    <div class="mb-8">
+                        <h3 class="text-xl font-semibold text-white mb-6">Technical Focus</h3>
+                        <ul class="space-y-3 text-gray-300 font-light">
+                            <li class="flex items-center"><span class="text-blue-400 mr-3">▸</span> Python-first
+                                architecture and design</li>
+                            <li class="flex items-center"><span class="text-purple-400 mr-3">▸</span> LLM integration &
+                                multi-provider orchestration</li>
+                            <li class="flex items-center"><span class="text-blue-400 mr-3">▸</span> RAG
+                                (Retrieval-Augmented Generation) at scale</li>
+                            <li class="flex items-center"><span class="text-purple-400 mr-3">▸</span> Serverless
+                                architectures (AWS Lambda, DynamoDB)</li>
+                            <li class="flex items-center"><span class="text-blue-400 mr-3">▸</span> ML monitoring &
+                                observability</li>
+                        </ul>
+                    </div>
+
+                    <p class="text-lg md:text-xl leading-relaxed text-gray-300 font-light">
+                        I'm passionate about making AI accessible, building systems that scale, and sharing learnings
+                        with the community. Always happy to discuss AI architecture, Python engineering, or the
+                        challenges of production ML systems.
                     </p>
                 </div>
             </div>
@@ -394,163 +437,147 @@
 
 
     <!-- Skills Section -->
-    <section id="skills" class="py-24 relative overflow-hidden">
-        <div class="absolute inset-0 opacity-5">
-            <div class="absolute top-20 left-10 w-72 h-72 bg-blue-500 rounded-full filter blur-3xl"></div>
-            <div class="absolute bottom-20 right-10 w-96 h-96 bg-purple-500 rounded-full filter blur-3xl"></div>
+    <section id="skills" class="py-32 relative overflow-hidden">
+        <div class="absolute inset-0 opacity-10">
+            <div class="absolute top-20 left-10 w-72 h-72 bg-blue-500 rounded-full filter blur-[80px]"></div>
+            <div class="absolute bottom-20 right-10 w-96 h-96 bg-purple-500 rounded-full filter blur-[80px]"></div>
         </div>
+
         <div class="container mx-auto px-6 relative z-10">
-            <h2 class="text-4xl md:text-5xl font-bold text-center mb-6 section-title">Technical Expertise</h2>
-            <p class="text-center text-gray-400 mb-16 max-w-2xl mx-auto font-light">
+            <h2 class="text-4xl md:text-5xl font-bold text-center mb-6 section-title reveal">Technical Expertise</h2>
+            <p class="text-center text-gray-400 mb-16 max-w-2xl mx-auto font-light reveal stagger-1">
                 Building enterprise-scale AI platforms with modern cloud infrastructure and cutting-edge technologies
             </p>
 
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-16">
                 <!-- AI & ML -->
-                <div class="bg-glass rounded-2xl p-6 card-hover">
-                    <div class="flex items-center mb-6">
+                <div class="bg-glass rounded-3xl p-8 card-hover reveal stagger-1 border border-white/5">
+                    <div class="flex items-center mb-8">
                         <div
-                            class="w-12 h-12 bg-gradient-to-br from-blue-500 to-blue-600 rounded-xl flex items-center justify-center mr-3 shadow-lg">
-                            <i class="fas fa-brain text-xl"></i>
+                            class="w-14 h-14 bg-gradient-to-br from-blue-500 to-cyan-500 rounded-2xl flex items-center justify-center mr-4 shadow-lg shadow-blue-500/20">
+                            <i class="fas fa-brain text-2xl text-white"></i>
                         </div>
-                        <h3 class="text-xl font-bold">AI & ML</h3>
+                        <h3 class="text-xl font-bold text-white">AI & ML</h3>
                     </div>
-                    <div class="space-y-3">
+                    <div class="space-y-4">
                         <div class="flex justify-between items-center">
-                            <span class="text-sm">Generative AI</span>
-                            <span class="skill-badge text-blue-400">Expert</span>
+                            <span class="text-gray-300">Generative AI</span>
+                            <span class="skill-pill">Expert</span>
                         </div>
                         <div class="flex justify-between items-center">
-                            <span class="text-sm">LangChain</span>
-                            <span class="skill-badge text-blue-400">Expert</span>
+                            <span class="text-gray-300">LangChain</span>
+                            <span class="skill-pill">Expert</span>
                         </div>
                         <div class="flex justify-between items-center">
-                            <span class="text-sm">RAG Systems</span>
-                            <span class="skill-badge text-blue-400">Expert</span>
+                            <span class="text-gray-300">RAG Systems</span>
+                            <span class="skill-pill">Expert</span>
                         </div>
                         <div class="flex justify-between items-center">
-                            <span class="text-sm">MLOps</span>
-                            <span class="skill-badge text-blue-400">Expert</span>
+                            <span class="text-gray-300">MLOps</span>
+                            <span class="skill-pill">Expert</span>
                         </div>
                         <div class="flex justify-between items-center">
-                            <span class="text-sm">TensorFlow</span>
-                            <span class="skill-badge text-blue-400">Proficient</span>
+                            <span class="text-gray-300">TensorFlow</span>
+                            <span class="text-sm text-gray-500">Proficient</span>
                         </div>
                         <div class="flex justify-between items-center">
-                            <span class="text-sm">Computer Vision</span>
-                            <span class="skill-badge text-blue-400">Proficient</span>
+                            <span class="text-gray-300">Computer Vision</span>
+                            <span class="text-sm text-gray-500">Proficient</span>
                         </div>
                     </div>
                 </div>
 
                 <!-- Cloud & DevOps -->
-                <div class="bg-glass rounded-2xl p-6 card-hover">
-                    <div class="flex items-center mb-6">
+                <div class="bg-glass rounded-3xl p-8 card-hover reveal stagger-2 border border-white/5">
+                    <div class="flex items-center mb-8">
                         <div
-                            class="w-12 h-12 bg-gradient-to-br from-indigo-500 to-indigo-600 rounded-xl flex items-center justify-center mr-3 shadow-lg">
-                            <i class="fas fa-cloud text-xl"></i>
+                            class="w-14 h-14 bg-gradient-to-br from-indigo-500 to-purple-500 rounded-2xl flex items-center justify-center mr-4 shadow-lg shadow-indigo-500/20">
+                            <i class="fas fa-cloud text-2xl text-white"></i>
                         </div>
-                        <h3 class="text-xl font-bold">Cloud & DevOps</h3>
+                        <h3 class="text-xl font-bold text-white">Cloud & DevOps</h3>
                     </div>
-                    <div class="space-y-3">
+                    <div class="space-y-4">
                         <div class="flex justify-between items-center">
-                            <span class="text-sm">Google Cloud (GCP)</span>
-                            <span class="skill-badge text-indigo-400">Expert</span>
+                            <span class="text-gray-300">Google Cloud</span>
+                            <span class="skill-pill">Expert</span>
                         </div>
                         <div class="flex justify-between items-center">
-                            <span class="text-sm">AWS</span>
-                            <span class="skill-badge text-indigo-400">Expert</span>
+                            <span class="text-gray-300">AWS</span>
+                            <span class="skill-pill">Expert</span>
                         </div>
                         <div class="flex justify-between items-center">
-                            <span class="text-sm">Kubernetes</span>
-                            <span class="skill-badge text-indigo-400">Proficient</span>
+                            <span class="text-gray-300">Kubernetes</span>
+                            <span class="text-sm text-gray-500">Proficient</span>
                         </div>
                         <div class="flex justify-between items-center">
-                            <span class="text-sm">Terraform</span>
-                            <span class="skill-badge text-indigo-400">Proficient</span>
+                            <span class="text-gray-300">Terraform</span>
+                            <span class="text-sm text-gray-500">Proficient</span>
                         </div>
                         <div class="flex justify-between items-center">
-                            <span class="text-sm">Docker</span>
-                            <span class="skill-badge text-indigo-400">Proficient</span>
+                            <span class="text-gray-300">Docker</span>
+                            <span class="text-sm text-gray-500">Proficient</span>
                         </div>
                         <div class="flex justify-between items-center">
-                            <span class="text-sm">CI/CD Pipelines</span>
-                            <span class="skill-badge text-indigo-400">Proficient</span>
+                            <span class="text-gray-300">CI/CD</span>
+                            <span class="text-sm text-gray-500">Proficient</span>
                         </div>
                     </div>
                 </div>
 
                 <!-- Software Development -->
-                <div class="bg-glass rounded-2xl p-6 card-hover">
-                    <div class="flex items-center mb-6">
+                <div class="bg-glass rounded-3xl p-8 card-hover reveal stagger-3 border border-white/5">
+                    <div class="flex items-center mb-8">
                         <div
-                            class="w-12 h-12 bg-gradient-to-br from-purple-500 to-purple-600 rounded-xl flex items-center justify-center mr-3 shadow-lg">
-                            <i class="fas fa-code text-xl"></i>
+                            class="w-14 h-14 bg-gradient-to-br from-purple-500 to-pink-500 rounded-2xl flex items-center justify-center mr-4 shadow-lg shadow-purple-500/20">
+                            <i class="fas fa-code text-2xl text-white"></i>
                         </div>
-                        <h3 class="text-xl font-bold">Development</h3>
+                        <h3 class="text-xl font-bold text-white">Development</h3>
                     </div>
-                    <div class="space-y-3">
+                    <div class="space-y-4">
                         <div class="flex justify-between items-center">
-                            <span class="text-sm">Python</span>
-                            <span class="skill-badge text-purple-400">Expert</span>
+                            <span class="text-gray-300">Python</span>
+                            <span class="skill-pill">Expert</span>
                         </div>
                         <div class="flex justify-between items-center">
-                            <span class="text-sm">FastAPI</span>
-                            <span class="skill-badge text-purple-400">Expert</span>
+                            <span class="text-gray-300">FastAPI</span>
+                            <span class="skill-pill">Expert</span>
                         </div>
                         <div class="flex justify-between items-center">
-                            <span class="text-sm">SQL</span>
-                            <span class="skill-badge text-purple-400">Proficient</span>
+                            <span class="text-gray-300">SQL</span>
+                            <span class="text-sm text-gray-500">Proficient</span>
                         </div>
                         <div class="flex justify-between items-center">
-                            <span class="text-sm">REST APIs</span>
-                            <span class="skill-badge text-purple-400">Expert</span>
+                            <span class="text-gray-300">REST APIs</span>
+                            <span class="skill-pill">Expert</span>
                         </div>
                         <div class="flex justify-between items-center">
-                            <span class="text-sm">Git</span>
-                            <span class="skill-badge text-purple-400">Expert</span>
+                            <span class="text-gray-300">Git</span>
+                            <span class="skill-pill">Expert</span>
                         </div>
                         <div class="flex justify-between items-center">
-                            <span class="text-sm">Microservices</span>
-                            <span class="skill-badge text-purple-400">Proficient</span>
+                            <span class="text-gray-300">Microservices</span>
+                            <span class="text-sm text-gray-500">Proficient</span>
                         </div>
                     </div>
                 </div>
             </div>
 
             <!-- Additional Technologies -->
-            <div class="bg-glass rounded-2xl p-8 md:p-10 max-w-5xl mx-auto">
+            <div class="bg-glass rounded-3xl p-8 md:p-10 max-w-5xl mx-auto border border-white/5 reveal">
                 <h3 class="text-xl font-bold mb-8 text-center text-gray-300">Additional Technologies & Tools</h3>
                 <div class="flex flex-wrap justify-center gap-4">
-                    <span
-                        class="px-5 py-2.5 bg-gray-800/50 rounded-full text-sm border border-gray-700 hover:border-blue-500 transition-colors cursor-default">Keras</span>
-                    <span
-                        class="px-5 py-2.5 bg-gray-800/50 rounded-full text-sm border border-gray-700 hover:border-blue-500 transition-colors cursor-default">Flask</span>
-                    <span
-                        class="px-5 py-2.5 bg-gray-800/50 rounded-full text-sm border border-gray-700 hover:border-blue-500 transition-colors cursor-default">Scikit-learn</span>
-                    <span
-                        class="px-5 py-2.5 bg-gray-800/50 rounded-full text-sm border border-gray-700 hover:border-blue-500 transition-colors cursor-default">OpenCV</span>
-                    <span
-                        class="px-5 py-2.5 bg-gray-800/50 rounded-full text-sm border border-gray-700 hover:border-blue-500 transition-colors cursor-default">OpenAI
-                        SDK</span>
-                    <span
-                        class="px-5 py-2.5 bg-gray-800/50 rounded-full text-sm border border-gray-700 hover:border-blue-500 transition-colors cursor-default">AWS
-                        Bedrock</span>
-                    <span
-                        class="px-5 py-2.5 bg-gray-800/50 rounded-full text-sm border border-gray-700 hover:border-blue-500 transition-colors cursor-default">Vertex
-                        AI SDK</span>
-                    <span
-                        class="px-5 py-2.5 bg-gray-800/50 rounded-full text-sm border border-gray-700 hover:border-blue-500 transition-colors cursor-default">AWS
-                        DynamoDB</span>
-                    <span
-                        class="px-5 py-2.5 bg-gray-800/50 rounded-full text-sm border border-gray-700 hover:border-blue-500 transition-colors cursor-default">BigQuery</span>
-                    <span
-                        class="px-5 py-2.5 bg-gray-800/50 rounded-full text-sm border border-gray-700 hover:border-blue-500 transition-colors cursor-default">Snowflake</span>
-                    <span
-                        class="px-5 py-2.5 bg-gray-800/50 rounded-full text-sm border border-gray-700 hover:border-blue-500 transition-colors cursor-default">SageMaker</span>
-                    <span
-                        class="px-5 py-2.5 bg-gray-800/50 rounded-full text-sm border border-gray-700 hover:border-blue-500 transition-colors cursor-default">Vector
-                        Databases</span>
+                    <span class="skill-pill hover:bg-white/10 cursor-default">Keras</span>
+                    <span class="skill-pill hover:bg-white/10 cursor-default">Flask</span>
+                    <span class="skill-pill hover:bg-white/10 cursor-default">Scikit-learn</span>
+                    <span class="skill-pill hover:bg-white/10 cursor-default">OpenCV</span>
+                    <span class="skill-pill hover:bg-white/10 cursor-default">OpenAI SDK</span>
+                    <span class="skill-pill hover:bg-white/10 cursor-default">AWS Bedrock</span>
+                    <span class="skill-pill hover:bg-white/10 cursor-default">Vertex AI SDK</span>
+                    <span class="skill-pill hover:bg-white/10 cursor-default">DynamoDB</span>
+                    <span class="skill-pill hover:bg-white/10 cursor-default">BigQuery</span>
+                    <span class="skill-pill hover:bg-white/10 cursor-default">Snowflake</span>
+                    <span class="skill-pill hover:bg-white/10 cursor-default">SageMaker</span>
+                    <span class="skill-pill hover:bg-white/10 cursor-default">Vector Databases</span>
                 </div>
             </div>
         </div>
@@ -558,80 +585,107 @@
 
 
     <!-- Experience Timeline -->
-    <section id="experience" class="py-24 bg-gray-800/50">
-        <div class="container mx-auto px-6">
-            <h2 class="text-4xl md:text-5xl font-bold text-center mb-20 section-title">Professional Journey</h2>
+    <section id="experience" class="py-32 relative">
+        <div class="container mx-auto px-6 relative z-10">
+            <h2 class="text-4xl md:text-5xl font-bold text-center mb-20 section-title reveal">Professional Journey</h2>
             <div class="max-w-4xl mx-auto">
                 <!-- Thomson Reuters -->
-                <div class="relative pl-8 pb-16 timeline-item">
-                    <div class="absolute left-0 top-0 w-1 h-full bg-gradient-to-b from-blue-500 to-indigo-500"></div>
-                    <div class="absolute w-5 h-5 bg-blue-500 rounded-full -left-[9px] timeline-dot shadow-lg"></div>
-                    <div class="bg-glass rounded-2xl p-8 md:p-10 ml-8 card-hover">
+                <div class="relative pl-8 pb-16 timeline-item reveal stagger-1">
+                    <div
+                        class="absolute left-0 top-0 w-0.5 h-full bg-gradient-to-b from-blue-500 to-indigo-500 opacity-50">
+                    </div>
+                    <div
+                        class="absolute w-4 h-4 bg-blue-500 rounded-full -left-[7px] top-0 timeline-dot shadow-[0_0_15px_rgba(59,130,246,0.5)]">
+                    </div>
+                    <div class="bg-glass rounded-3xl p-8 md:p-10 ml-8 card-hover border border-white/5">
                         <div class="flex flex-col md:flex-row md:justify-between md:items-start mb-6">
                             <div>
-                                <h3 class="text-2xl md:text-3xl font-bold mb-2">Senior AI Software Engineer</h3>
+                                <h3 class="text-2xl md:text-3xl font-bold mb-2 text-white">Senior AI Software Engineer
+                                </h3>
                                 <p class="text-blue-400 text-lg font-medium">Thomson Reuters</p>
                             </div>
-                            <span class="text-gray-400 mt-2 md:mt-0 text-sm md:text-base">June 2022 - Present</span>
+                            <span
+                                class="text-gray-400 mt-2 md:mt-0 text-sm md:text-base font-light px-3 py-1 bg-white/5 rounded-full">June
+                                2022 - Present</span>
                         </div>
-                        <ul class="space-y-4 text-gray-200">
+                        <ul class="space-y-4 text-gray-300">
                             <li class="flex items-start">
-                                <span class="text-blue-400 mr-3 mt-1">▸</span>
-                                <span class="font-light leading-relaxed">Leading the <span
-                                        class="font-semibold text-white">Generative AI Platform</span> that enables
-                                    teams across Thomson Reuters to develop, deploy, and scale their own generative AI
-                                    solutions from concept to production.</span>
+                                <span class="text-blue-400 mr-3 mt-1.5 text-xs">●</span>
+                                <span class="font-light leading-relaxed">Architected and implemented the core serverless
+                                    infrastructure serving 20k users, designing the LLM provider abstraction layer and
+                                    workflow orchestration engine. Mentored 10+ engineers on the technical
+                                    implementation.</span>
                             </li>
                             <li class="flex items-start">
-                                <span class="text-blue-400 mr-3 mt-1">▸</span>
+                                <span class="text-blue-400 mr-3 mt-1.5 text-xs">●</span>
                                 <span class="font-light leading-relaxed">Built capabilities for users to create
-                                    sophisticated <span class="font-semibold text-white">Agentic AI solutions</span>,
+                                    sophisticated <span class="text-white font-medium">Agentic AI solutions</span>,
                                     enabling them to chain multiple databases and agents together to solve complex
                                     business problems.</span>
                             </li>
                             <li class="flex items-start">
-                                <span class="text-blue-400 mr-3 mt-1">▸</span>
+                                <span class="text-blue-400 mr-3 mt-1.5 text-xs">●</span>
                                 <span class="font-light leading-relaxed">Developed an <span
-                                        class="font-semibold text-white">automated production-grade RAG deployment
+                                        class="text-white font-medium">automated production-grade RAG deployment
                                         system</span> from scratch, allowing users to deploy retrieval-augmented
                                     generation solutions with enterprise-level reliability and scalability.</span>
                             </li>
                             <li class="flex items-start">
-                                <span class="text-blue-400 mr-3 mt-1">▸</span>
+                                <span class="text-blue-400 mr-3 mt-1.5 text-xs">●</span>
                                 <span class="font-light leading-relaxed">Architecting a comprehensive platform that
                                     democratizes AI capabilities, providing self-service tools for model development,
                                     deployment pipelines, and production monitoring.</span>
+                            </li>
+                            <li class="flex items-start">
+                                <span class="text-blue-400 mr-3 mt-1.5 text-xs">●</span>
+                                <span class="font-light leading-relaxed">Co-authored the AWS Machine Learning Blog post
+                                    <a href="https://aws.amazon.com/blogs/machine-learning/democratizing-ai-how-thomson-reuters-open-arena-supports-no-code-ai-for-every-professional-with-amazon-bedrock/"
+                                        target="_blank" rel="noopener noreferrer"
+                                        class="text-blue-300 hover:text-blue-200 underline decoration-blue-500/30 underline-offset-4 transition-colors">Democratizing
+                                        AI: How Thomson Reuters Open Arena supports no-code AI for every professional
+                                        with Amazon Bedrock</a>.</span>
                             </li>
                         </ul>
                     </div>
                 </div>
 
                 <!-- HSBC SSE -->
-                <div class="relative pl-8 pb-16 timeline-item">
-                    <div class="absolute left-0 top-0 w-1 h-full bg-gradient-to-b from-indigo-500 to-purple-500"></div>
-                    <div class="absolute w-5 h-5 bg-indigo-500 rounded-full -left-[9px] timeline-dot shadow-lg"></div>
-                    <div class="bg-glass rounded-2xl p-8 md:p-10 ml-8 card-hover">
+                <div class="relative pl-8 pb-16 timeline-item reveal stagger-2">
+                    <div
+                        class="absolute left-0 top-0 w-0.5 h-full bg-gradient-to-b from-indigo-500 to-purple-500 opacity-50">
+                    </div>
+                    <div
+                        class="absolute w-4 h-4 bg-indigo-500 rounded-full -left-[7px] top-0 timeline-dot shadow-[0_0_15px_rgba(99,102,241,0.5)]">
+                    </div>
+                    <div class="bg-glass rounded-3xl p-8 md:p-10 ml-8 card-hover border border-white/5">
                         <div class="flex flex-col md:flex-row md:justify-between md:items-start mb-6">
                             <div>
-                                <h3 class="text-2xl md:text-3xl font-bold mb-2">Senior Software Engineer</h3>
+                                <h3 class="text-2xl md:text-3xl font-bold mb-2 text-white">Senior Software Engineer</h3>
                                 <p class="text-indigo-400 text-lg font-medium">HSBC Technology</p>
                             </div>
-                            <span class="text-gray-400 mt-2 md:mt-0 text-sm md:text-base">September 2021 - May
-                                2022</span>
+                            <span
+                                class="text-gray-400 mt-2 md:mt-0 text-sm md:text-base font-light px-3 py-1 bg-white/5 rounded-full">Sept
+                                2021 - May 2022</span>
                         </div>
-                        <ul class="space-y-4 text-gray-200">
+                        <ul class="space-y-4 text-gray-300">
                             <li class="flex items-start">
-                                <span class="text-indigo-400 mr-3 mt-1">▸</span>
+                                <span class="text-indigo-400 mr-3 mt-1.5 text-xs">●</span>
+                                <span class="font-light leading-relaxed">Previously built ML platforms reducing model
+                                    deployment time by <span class="text-white font-medium">90%</span> through
+                                    Kubernetes automation.</span>
+                            </li>
+                            <li class="flex items-start">
+                                <span class="text-indigo-400 mr-3 mt-1.5 text-xs">●</span>
                                 <span class="font-light leading-relaxed">Led cloud migration initiatives, managing the
                                     transition of data from on-premises to Google Cloud Platform.</span>
                             </li>
                             <li class="flex items-start">
-                                <span class="text-indigo-400 mr-3 mt-1">▸</span>
+                                <span class="text-indigo-400 mr-3 mt-1.5 text-xs">●</span>
                                 <span class="font-light leading-relaxed">Implemented automated Terraform pipelines,
                                     streamlining production deployments and reducing errors by 95%.</span>
                             </li>
                             <li class="flex items-start">
-                                <span class="text-indigo-400 mr-3 mt-1">▸</span>
+                                <span class="text-indigo-400 mr-3 mt-1.5 text-xs">●</span>
                                 <span class="font-light leading-relaxed">Developed Infrastructure as Code (IaC) for
                                     Compute Engines, Managed Instance Groups, Load Balancers, Cloud Storage Buckets, and
                                     BigQuery resources.</span>
@@ -641,32 +695,38 @@
                 </div>
 
                 <!-- HSBC SE -->
-                <div class="relative pl-8 pb-16 timeline-item">
-                    <div class="absolute left-0 top-0 w-1 h-full bg-gradient-to-b from-purple-500 to-pink-500"></div>
-                    <div class="absolute w-5 h-5 bg-purple-500 rounded-full -left-[9px] timeline-dot shadow-lg"></div>
-                    <div class="bg-glass rounded-2xl p-8 md:p-10 ml-8 card-hover">
+                <div class="relative pl-8 pb-16 timeline-item reveal stagger-3">
+                    <div
+                        class="absolute left-0 top-0 w-0.5 h-full bg-gradient-to-b from-purple-500 to-pink-500 opacity-50">
+                    </div>
+                    <div
+                        class="absolute w-4 h-4 bg-purple-500 rounded-full -left-[7px] top-0 timeline-dot shadow-[0_0_15px_rgba(168,85,247,0.5)]">
+                    </div>
+                    <div class="bg-glass rounded-3xl p-8 md:p-10 ml-8 card-hover border border-white/5">
                         <div class="flex flex-col md:flex-row md:justify-between md:items-start mb-6">
                             <div>
-                                <h3 class="text-2xl md:text-3xl font-bold mb-2">Software Engineer</h3>
+                                <h3 class="text-2xl md:text-3xl font-bold mb-2 text-white">Software Engineer</h3>
                                 <p class="text-purple-400 text-lg font-medium">HSBC Technology</p>
                             </div>
-                            <span class="text-gray-400 mt-2 md:mt-0 text-sm md:text-base">July 2019 - August 2021</span>
+                            <span
+                                class="text-gray-400 mt-2 md:mt-0 text-sm md:text-base font-light px-3 py-1 bg-white/5 rounded-full">July
+                                2019 - Aug 2021</span>
                         </div>
-                        <ul class="space-y-4 text-gray-200">
+                        <ul class="space-y-4 text-gray-300">
                             <li class="flex items-start">
-                                <span class="text-purple-400 mr-3 mt-1">▸</span>
+                                <span class="text-purple-400 mr-3 mt-1.5 text-xs">●</span>
                                 <span class="font-light leading-relaxed">Developed an Automated Machine Learning
                                     (AutoML) Pipeline, automating 90% of the manual work in training and deploying
                                     models.</span>
                             </li>
                             <li class="flex items-start">
-                                <span class="text-purple-400 mr-3 mt-1">▸</span>
+                                <span class="text-purple-400 mr-3 mt-1.5 text-xs">●</span>
                                 <span class="font-light leading-relaxed">Designed and deployed a Python-based Automatic
                                     Test Data Generator for testing Dev and UAT pipelines, utilizing the Dash-Flask
                                     framework.</span>
                             </li>
                             <li class="flex items-start">
-                                <span class="text-purple-400 mr-3 mt-1">▸</span>
+                                <span class="text-purple-400 mr-3 mt-1.5 text-xs">●</span>
                                 <span class="font-light leading-relaxed">Created a Python Web API hosted on Google
                                     Cloud, enabling search functionality for over 50+ data assets within the
                                     organization.</span>
@@ -676,31 +736,36 @@
                 </div>
 
                 <!-- UST ML Intern -->
-                <div class="relative pl-8 timeline-item">
-                    <div class="absolute left-0 top-0 w-1 h-full bg-gradient-to-b from-pink-500 to-rose-500"></div>
-                    <div class="absolute w-5 h-5 bg-pink-500 rounded-full -left-[9px] timeline-dot shadow-lg"></div>
-                    <div class="bg-glass rounded-2xl p-8 md:p-10 ml-8 card-hover">
+                <div class="relative pl-8 timeline-item reveal stagger-1">
+                    <div
+                        class="absolute left-0 top-0 w-0.5 h-full bg-gradient-to-b from-pink-500 to-rose-500 opacity-50">
+                    </div>
+                    <div
+                        class="absolute w-4 h-4 bg-pink-500 rounded-full -left-[7px] top-0 timeline-dot shadow-[0_0_15px_rgba(236,72,153,0.5)]">
+                    </div>
+                    <div class="bg-glass rounded-3xl p-8 md:p-10 ml-8 card-hover border border-white/5">
                         <div class="flex flex-col md:flex-row md:justify-between md:items-start mb-6">
                             <div>
-                                <h3 class="text-2xl md:text-3xl font-bold mb-2">Machine Learning Intern</h3>
+                                <h3 class="text-2xl md:text-3xl font-bold mb-2 text-white">Machine Learning Intern</h3>
                                 <p class="text-pink-400 text-lg font-medium">UST Global</p>
                             </div>
-                            <span class="text-gray-400 mt-2 md:mt-0 text-sm md:text-base">July 2018 - December
-                                2018</span>
+                            <span
+                                class="text-gray-400 mt-2 md:mt-0 text-sm md:text-base font-light px-3 py-1 bg-white/5 rounded-full">July
+                                2018 - Dec 2018</span>
                         </div>
-                        <ul class="space-y-4 text-gray-200">
+                        <ul class="space-y-4 text-gray-300">
                             <li class="flex items-start">
-                                <span class="text-pink-400 mr-3 mt-1">▸</span>
+                                <span class="text-pink-400 mr-3 mt-1.5 text-xs">●</span>
                                 <span class="font-light leading-relaxed">Developed a Car Damage Detection Algorithm that
                                     estimates damage on individual car parts from images.</span>
                             </li>
                             <li class="flex items-start">
-                                <span class="text-pink-400 mr-3 mt-1">▸</span>
+                                <span class="text-pink-400 mr-3 mt-1.5 text-xs">●</span>
                                 <span class="font-light leading-relaxed">Created a Mask-RCNN model for object detection,
                                     segmenting car parts with 91% accuracy.</span>
                             </li>
                             <li class="flex items-start">
-                                <span class="text-pink-400 mr-3 mt-1">▸</span>
+                                <span class="text-pink-400 mr-3 mt-1.5 text-xs">●</span>
                                 <span class="font-light leading-relaxed">Built a multi-class image classification model
                                     to identify the severity of car damage (Minor, Moderate, Severe), achieving 83%
                                     accuracy in identifying damaged parts.</span>
@@ -714,44 +779,48 @@
 
 
     <!-- Contact Section -->
-    <section id="contact" class="py-24">
-        <div class="container mx-auto px-6 text-center">
-            <h2 class="text-4xl md:text-5xl font-bold mb-8 section-title">Let's Connect</h2>
-            <p class="text-lg md:text-xl max-w-2xl mx-auto mb-16 text-gray-200 font-light leading-relaxed">
-                Interested in discussing AI platforms, cloud architecture, or exploring collaboration opportunities?
-                I'd love to hear from you.
+    <section id="contact" class="py-32 relative">
+        <div class="container mx-auto px-6 text-center relative z-10">
+            <h2 class="text-4xl md:text-5xl font-bold mb-8 section-title reveal">Let's Connect</h2>
+            <p
+                class="text-lg md:text-xl max-w-2xl mx-auto mb-16 text-gray-300 font-light leading-relaxed reveal stagger-1">
+                Open to connecting with folks working on AI infrastructure, MLOps, and production LLM systems.
             </p>
-            <div class="flex justify-center space-x-8 mb-12">
+            <div class="flex justify-center space-x-6 mb-16 reveal stagger-2">
                 <a href="https://github.com/bluekap" target="_blank" rel="noopener noreferrer"
-                    class="social-icon bg-glass p-5 rounded-full hover:bg-white hover:text-black transition-all">
-                    <i class="fab fa-github text-3xl"></i>
+                    class="social-icon bg-glass p-5 rounded-full text-gray-300 hover:text-white hover:bg-white/10 transition-all group">
+                    <i class="fab fa-github text-3xl group-hover:scale-110 transition-transform"></i>
                 </a>
                 <a href="https://www.linkedin.com/in/vaibhav-goswami3/" target="_blank" rel="noopener noreferrer"
-                    class="social-icon bg-glass p-5 rounded-full hover:bg-white hover:text-blue-600 transition-all">
-                    <i class="fab fa-linkedin text-3xl"></i>
+                    class="social-icon bg-glass p-5 rounded-full text-gray-300 hover:text-blue-500 hover:bg-white/10 transition-all group">
+                    <i class="fab fa-linkedin text-3xl group-hover:scale-110 transition-transform"></i>
                 </a>
                 <a href="https://mail.google.com/mail/?view=cm&fs=1&to=vabg96@gmail.com" target="_blank"
                     rel="noopener noreferrer"
-                    class="social-icon bg-glass p-5 rounded-full hover:bg-white hover:text-red-500 transition-all">
-                    <i class="fas fa-envelope text-3xl"></i>
+                    class="social-icon bg-glass p-5 rounded-full text-gray-300 hover:text-red-500 hover:bg-white/10 transition-all group">
+                    <i class="fas fa-envelope text-3xl group-hover:scale-110 transition-transform"></i>
                 </a>
             </div>
-            <a href="resume/Resume.pdf" target="_blank" rel="noopener noreferrer"
-                class="inline-flex items-center bg-gradient-to-r from-blue-500 to-indigo-600 text-white px-8 py-4 rounded-xl hover:from-blue-600 hover:to-indigo-700 transition-all shadow-lg hover:shadow-xl transform hover:-translate-y-1 font-medium">
-                <i class="fas fa-download mr-3"></i>Download Resume
-            </a>
+
+            <div class="reveal stagger-3">
+                <a href="resume/Resume.pdf" target="_blank" rel="noopener noreferrer"
+                    class="inline-flex items-center px-8 py-4 rounded-xl font-medium text-white bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-500 hover:to-indigo-500 transition-all shadow-lg hover:shadow-blue-500/30 transform hover:-translate-y-1">
+                    <i class="fas fa-download mr-3"></i>Download Resume
+                </a>
+            </div>
         </div>
     </section>
 
-    <footer class="py-12 bg-gray-900/50 text-gray-400 border-t border-gray-800">
+    <footer class="py-12 bg-black/20 text-gray-500 border-t border-white/5 backdrop-blur-sm relative z-10">
         <div class="container mx-auto px-6 text-center space-y-6">
-            <div class="flex justify-center space-x-8 text-sm font-light">
+            <div class="flex justify-center space-x-8 text-sm font-medium tracking-wide">
                 <a href="#about" class="hover:text-blue-400 transition-colors">About</a>
                 <a href="#skills" class="hover:text-blue-400 transition-colors">Skills</a>
                 <a href="#experience" class="hover:text-blue-400 transition-colors">Experience</a>
                 <a href="#contact" class="hover:text-blue-400 transition-colors">Contact</a>
             </div>
-            <p class="text-sm font-light">&copy; 2025 Vaibhav Goswami. Crafted with care.</p>
+            <p class="text-xs font-light tracking-wider opacity-60">&copy; 2025 Vaibhav Goswami. Crafted with care &
+                code.</p>
         </div>
     </footer>
 
