@@ -172,11 +172,11 @@
             }
         }
 
-        /* Scroll Reveal Animations */
+        /* Scroll Reveal Animations - Optimized for fast scrolling */
         .reveal {
-            opacity: 0;
-            transform: translateY(30px);
-            transition: all 0.8s cubic-bezier(0.5, 0, 0, 1);
+            opacity: 0.15;
+            transform: translateY(15px);
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
         }
 
         .reveal.active {
@@ -185,15 +185,15 @@
         }
 
         .stagger-1 {
-            transition-delay: 100ms;
+            transition-delay: 50ms;
         }
 
         .stagger-2 {
-            transition-delay: 200ms;
+            transition-delay: 100ms;
         }
 
         .stagger-3 {
-            transition-delay: 300ms;
+            transition-delay: 150ms;
         }
 
         /* Modern Scrollbar */
@@ -316,10 +316,10 @@
     </section>
 
     <script>
-        // Scroll Reveal Observer
+        // Scroll Reveal Observer - Optimized for fast scrolling
         const observerOptions = {
-            threshold: 0.1,
-            rootMargin: '0px 0px -50px 0px'
+            threshold: 0.05,
+            rootMargin: '0px 0px 100px 0px'
         };
 
         const observer = new IntersectionObserver((entries) => {
@@ -781,7 +781,93 @@
     <section id="projects" class="py-32 relative">
         <div class="container mx-auto px-6 relative z-10">
             <h2 class="text-4xl md:text-5xl font-bold text-center mb-16 section-title reveal">Projects</h2>
-            <div class="max-w-4xl mx-auto">
+            <div class="max-w-4xl mx-auto space-y-12">
+                <!-- CodeGraph -->
+                <div class="bg-glass rounded-3xl overflow-hidden card-hover reveal stagger-1 border border-white/5">
+                    <div class="p-8 md:p-10">
+                        <div class="flex flex-col md:flex-row justify-between items-start mb-6">
+                            <div class="flex items-center mb-4 md:mb-0">
+                                <div
+                                    class="w-14 h-14 bg-gradient-to-br from-purple-500 to-pink-500 rounded-2xl flex items-center justify-center mr-5 shadow-lg shadow-purple-500/20">
+                                    <i class="fas fa-project-diagram text-2xl text-white"></i>
+                                </div>
+                                <div>
+                                    <h3 class="text-2xl md:text-3xl font-bold text-white">CodeGraph</h3>
+                                    <p class="text-purple-400 text-lg font-medium mt-1">Interactive Code Dependency
+                                        Visualizer</p>
+                                </div>
+                            </div>
+                            <a href="https://github.com/bluekap/CodeGraph" target="_blank" rel="noopener noreferrer"
+                                class="social-icon bg-white/5 p-3 rounded-full text-gray-300 hover:text-white hover:bg-white/10 transition-all border border-white/5">
+                                <i class="fab fa-github text-xl"></i>
+                            </a>
+                        </div>
+
+                        <!-- Project Demo Video -->
+                        <div
+                            class="mb-8 rounded-2xl overflow-hidden border border-white/10 shadow-2xl shadow-purple-500/10 group relative">
+                            <div
+                                class="absolute inset-0 bg-gradient-to-t from-[#020617] via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-10 pointer-events-none">
+                            </div>
+                            <video autoplay loop muted playsinline
+                                class="w-full h-auto transform group-hover:scale-105 transition-transform duration-700">
+                                <source src="images/portfolio/code-graph-demo.mp4" type="video/mp4">
+                                Your browser does not support the video tag.
+                            </video>
+                        </div>
+
+                        <p class="text-lg text-gray-300 font-light leading-relaxed mb-8">
+                            A beautiful, interactive web application that visualizes GitHub repository dependencies as
+                            stunning force-directed network graphs. Drag nodes, click to highlight connections, and
+                            explore code architecture like never before.
+                        </p>
+
+                        <div class="mb-8">
+                            <h4 class="text-lg font-semibold text-white mb-4">Key Features</h4>
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                                <div class="flex items-start">
+                                    <span class="text-purple-400 mr-3 mt-1 text-xs">●</span>
+                                    <span class="text-gray-300 font-light">🕸️ <span
+                                            class="font-medium text-white">Interactive Force Graph:</span> Drag, zoom,
+                                        and pan to explore large codebases with smooth physics simulations.</span>
+                                </div>
+                                <div class="flex items-start">
+                                    <span class="text-purple-400 mr-3 mt-1 text-xs">●</span>
+                                    <span class="text-gray-300 font-light">📊 <span class="font-medium text-white">Rich
+                                            Metrics:</span> Cyclomatic complexity, lines of code, and dependency
+                                        tracking per file.</span>
+                                </div>
+                                <div class="flex items-start">
+                                    <span class="text-purple-400 mr-3 mt-1 text-xs">●</span>
+                                    <span class="text-gray-300 font-light">🎨 <span
+                                            class="font-medium text-white">Visual Encoding:</span> Blue gradient
+                                        complexity scale (light blue = simple → deep blue = complex), node size reflects
+                                        lines of code.</span>
+                                </div>
+                                <div class="flex items-start">
+                                    <span class="text-purple-400 mr-3 mt-1 text-xs">●</span>
+                                    <span class="text-gray-300 font-light">🔍 <span class="font-medium text-white">Smart
+                                            Highlighting:</span> Click nodes to highlight dependencies and understand
+                                        module coupling.</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="space-y-4">
+                            <h4 class="text-lg font-semibold text-white mb-3">Tech Stack</h4>
+                            <div class="flex flex-wrap gap-2">
+                                <span class="skill-pill hover:bg-white/10 cursor-default">Python</span>
+                                <span class="skill-pill hover:bg-white/10 cursor-default">FastAPI</span>
+                                <span class="skill-pill hover:bg-white/10 cursor-default">React</span>
+                                <span class="skill-pill hover:bg-white/10 cursor-default">TypeScript</span>
+                                <span class="skill-pill hover:bg-white/10 cursor-default">D3.js</span>
+                                <span class="skill-pill hover:bg-white/10 cursor-default">NetworkX</span>
+                                <span class="skill-pill hover:bg-white/10 cursor-default">Docker</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
                 <!-- Snap Sudoku Solver -->
                 <div class="bg-glass rounded-3xl overflow-hidden card-hover reveal stagger-1 border border-white/5">
                     <div class="p-8 md:p-10">
