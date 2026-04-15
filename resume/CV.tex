@@ -1,0 +1,188 @@
+%------------------------
+% Resume - GenAI / Platform Focused
+%------------------------
+
+\documentclass[a4paper,20pt]{article}
+
+\usepackage{latexsym}
+\usepackage[empty]{fullpage}
+\usepackage{titlesec}
+\usepackage{marvosym}
+\usepackage[usenames,dvipsnames]{color}
+\usepackage{verbatim}
+\usepackage{enumitem}
+\usepackage[pdftex]{hyperref}
+\usepackage{fancyhdr}
+
+\pagestyle{fancy}
+\fancyhf{}
+\fancyfoot{}
+\renewcommand{\headrulewidth}{0pt}
+\renewcommand{\footrulewidth}{0pt}
+
+% Adjust margins
+\addtolength{\oddsidemargin}{-0.530in}
+\addtolength{\evensidemargin}{-0.375in}
+\addtolength{\textwidth}{1in}
+\addtolength{\topmargin}{-.45in}
+\addtolength{\textheight}{1in}
+
+\urlstyle{rm}
+\raggedbottom
+\raggedright
+\setlength{\tabcolsep}{0in}
+
+% Sections formatting
+\titleformat{\section}{
+  \vspace{-10pt}\scshape\raggedright\large
+}{}{0em}{}[\color{black}\titlerule \vspace{-6pt}]
+
+%-------------------------
+% Custom commands
+\newcommand{\resumeItem}[2]{
+  \item\small{
+    \textbf{#1}{: #2 \vspace{-2pt}}
+  }
+}
+
+\newcommand{\resumeItemWithoutTitle}[1]{
+  \item\small{
+    {#1 \vspace{-2pt}}
+  }
+}
+
+\newcommand{\resumeSubheading}[4]{
+  \vspace{-1pt}\item
+    \begin{tabular*}{0.97\textwidth}{l@{\extracolsep{\fill}}r}
+      \textbf{#1} & #2 \\
+      \textit{#3} & \textit{#4} \\
+    \end{tabular*}\vspace{-5pt}
+}
+
+\newcommand{\resumeSubItem}[2]{\resumeItem{#1}{#2}\vspace{-3pt}}
+
+\renewcommand{\labelitemii}{$\circ$}
+
+\newcommand{\resumeSubHeadingListStart}{\begin{itemize}[leftmargin=*]}
+\newcommand{\resumeSubHeadingListEnd}{\end{itemize}}
+\newcommand{\resumeItemListStart}{\begin{itemize}}
+\newcommand{\resumeItemListEnd}{\end{itemize}\vspace{-5pt}}
+
+%-----------------------------
+%%%%%%  CV STARTS HERE  %%%%%%
+
+\begin{document}
+
+%----------HEADING-----------------
+\begin{tabular*}{\textwidth}{l@{\extracolsep{\fill}}r}
+\textbf{{\LARGE Vaibhav Goswami}} & Email: \href{mailto:vabg96@yahoo.com}{vabg96@yahoo.com} \\
+\href{https://bluekap.github.io}{Portfolio: bluekap.github.io} & Mobile: +48 795-345-494 \\
+Github: github.com/bluekap & Location: Gdańsk, Poland \\
+\end{tabular*}
+
+%-----------SKILLS-----------------
+\section{Skills Summary}
+\resumeSubHeadingListStart
+\resumeSubItem{Languages}{Python, SQL}
+\resumeSubItem{ML \& AI}{TensorFlow, Keras, Scikit-learn, LangChain, OpenCV, LLMs, RAG, Embeddings, Semantic Search, Prompt Engineering}
+\resumeSubItem{Cloud \& MLOps}{AWS (SageMaker, Bedrock, Lambda), GCP (BigQuery, Dataflow), Docker, Kubernetes, Terraform}
+\resumeSubItem{Data Platforms}{DynamoDB, BigQuery, Snowflake, Pub/Sub}
+\resumeSubItem{Tools}{Git, CI/CD, Flask, FastAPI}
+\resumeSubHeadingListEnd
+
+%-----------EXPERIENCE-----------------
+\section{Experience}
+\resumeSubHeadingListStart
+
+%---- Thomson Reuters ----
+\resumeSubheading
+  {Thomson Reuters}{Gdańsk, Poland}
+  {Senior Software Engineer}{June 2022 -- Present}
+\resumeItemListStart
+  \resumeItem{Enterprise Generative AI Platform}
+  {Core contributor and technical lead for an enterprise-scale Generative AI platform serving \textbf{20k+ monthly users}. Took the platform from early design to production adoption across multiple internal teams.}
+
+  \resumeItemWithoutTitle
+  {Designed a scalable, serverless architecture enabling rapid onboarding of applied AI use cases, focusing on improving the quality and relevance of search results through document analysis, summarization, and workflow automation.}
+
+  \resumeItem{LLM Integration \& Orchestration}
+  {Integrated and standardized access to multiple LLM providers including OpenAI, Anthropic (Claude), Google Gemini, and open-source Llama models. Built abstraction layers for prompt management, model selection, and evaluation.}
+
+  \resumeItem{RAG, Embeddings \& Semantic Search}
+  {Enabled creation of robust Retrieval-Augmented Generation (RAG) pipelines utilizing embeddings-based retrieval and semantic search. Expanded retrieval capabilities to seamlessly query third-party data sources using LangChain, tool/function calling, and Model Context Protocol (MCP) concepts for structured context exchange.}
+
+  \resumeItem{Platform Data \& Search Infrastructure}
+  {Designed and optimized scalable data infrastructure for high-throughput GenAI workloads. Reduced latency and cost of the retrieval system while managing execution metadata, prompt versions, and agent state.}
+
+  \resumeItem{ML Model Monitoring}
+  {Previously led development of Model Performance and Data Drift Monitoring services within the Enterprise AI Platform, supporting \textbf{500+ users} and production ML systems.}
+\resumeItemListEnd
+\vspace{5pt}
+
+%---- HSBC ----
+\resumeSubheading
+  {HSBC Bank PLC}{Hyderabad, India}
+  {Senior Software Engineer}{July 2019 -- April 2022}
+\resumeItemListStart
+  \resumeItem{Machine Learning Platform Engineering}
+  {Built an automated ML pipeline on Kubernetes to standardize model training and deployment, reducing manual effort by \textbf{90\%} and improving reproducibility across teams.}
+
+  \resumeItem{Cloud \& DevOps}
+  {Led GCP migration initiatives and implemented Terraform-based infrastructure pipelines, reducing deployment errors by \textbf{95\%} and saving \textbf{\$5k annually} through infrastructure optimization.}
+\resumeItemListEnd
+\vspace{5pt}
+
+%---- UST Global ----
+\resumeSubheading
+  {UST Global}{Chennai, India}
+  {Machine Learning Intern}{July 2018 -- December 2018}
+\resumeItemListStart
+  \resumeItem{Computer Vision Project}
+  {Developed a car damage detection and repair cost estimation system using Mask-RCNN, achieving \textbf{91\% accuracy} on a dataset of 10,000+ images.}
+
+  \resumeItemWithoutTitle
+  {Applied transfer learning and image augmentation techniques; project was showcased at the D3+ Industry Expo to business stakeholders.}
+\resumeItemListEnd
+
+\resumeSubHeadingListEnd
+
+%-----------PUBLICATIONS-----------------
+\vspace{-5pt}
+\section{Publications \& Technical Writing}
+\resumeSubHeadingListStart
+\resumeSubItem{AWS Machine Learning Blog (Co-author)}
+{\href{https://aws.amazon.com/blogs/machine-learning/democratizing-ai-how-thomson-reuters-open-arena-supports-no-code-ai-for-every-professional-with-amazon-bedrock/}
+{``Democratizing AI: How Thomson Reuters Open Arena supports no-code AI with Amazon Bedrock''} — November 2025.}
+\resumeSubHeadingListEnd
+
+%-----------EDUCATION-----------------
+\vspace{-5pt}
+\section{Education}
+\resumeSubHeadingListStart
+\resumeSubheading
+  {Birla Institute of Technology and Science (BITS Pilani)}{Goa Campus}
+  {B.E. (Hons.) Electronics \& Instrumentation}{July 2015 -- August 2019}
+\resumeSubHeadingListEnd
+
+%-----------PROJECTS-----------------
+\vspace{-5pt}
+\section{Projects}
+\resumeSubHeadingListStart
+\resumeSubItem{CodeGraph - Interactive Repository Visualizer}{
+Built a full-stack web application that transforms GitHub repositories into interactive dependency graphs with real-time metrics and physics-based visualizations. Architected a FastAPI backend that clones repositories, parses Python imports using AST, and calculates complexity metrics with Radon and NetworkX. (January 2026)}
+\resumeSubItem{Automatic Sudoku Solver from Image}
+{An AI-powered web application that solves Sudoku puzzles from camera images in seconds. It uses computer vision to detect the grid and deep learning OCR to recognize digits. }
+\vspace{2pt}
+
+
+%-----------CERTIFICATIONS-----------------
+\vspace{-5pt}
+\section{Professional Certifications}
+\resumeSubHeadingListStart
+\resumeSubItem{AWS}{Developer Associate (2022)}
+\resumeSubItem{Google Cloud Platform}{Professional Data Engineer (2021)}
+\resumeSubItem{TensorFlow}{TensorFlow Developer Certificate (2021)}
+\resumeSubItem{Google Cloud Platform}{Associate Cloud Engineer (2020)}
+\resumeSubHeadingListEnd
+\resumeSubHeadingListEnd
+\end{document}
